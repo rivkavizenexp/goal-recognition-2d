@@ -6,3 +6,4 @@ Goal Recognition 2d
 Get public and secret access key from AWS and place in the following tree - 
 
 `.aws.credentials`
+
