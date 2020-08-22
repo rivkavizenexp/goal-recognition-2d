@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 12.72 L 77.28 12.72 L 77.28 0.0 L 102.72 25.44 L 77.28 50.88 L 77.28 38.16 L 0.0 38.16 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,185.28892388451445,346.0)"/>
+  </svg>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 12.72 L 77.28 12.72 L 77.28 0.0 L 102.72 25.44 L 77.28 50.88 L 77.28 38.16 L 0.0 38.16 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,694.4939632545932,611.049343832021)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 12.72 L 77.28 12.72 L 77.28 0.0 L 102.72 25.44 L 77.28 50.88 L 77.28 38.16 L 0.0 38.16 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,694.4939632545932,504.2668766404199)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 4.921889763779528 L 92.87622047244095 4.921889763779528 L 92.87622047244095 0.0 L 102.72 9.843779527559056 L 92.87622047244095 19.68755905511811 L 92.87622047244095 14.765669291338583 L 0.0 14.765669291338583 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,694.4939632545932,120.01763779527559)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 4.921889763779528 L 92.87622047244095 4.921889763779528 L 92.87622047244095 0.0 L 102.72 9.843779527559056 L 92.87622047244095 19.68755905511811 L 92.87622047244095 14.765669291338583 L 0.0 14.765669291338583 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,694.4939632545932,196.04566929133858)"/>
+  </svg>
+</svg>

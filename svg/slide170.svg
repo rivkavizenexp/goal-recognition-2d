@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,594.3418372703412,453.958530183727)"/>
+  </svg>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 15.0 147.0 L 14.0 38.0 L 0.0 39.0 L 15.0 0.0 L 31.0 38.0 L 10.0 37.0" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(0.344825325162571,0.9386668712203107,-1.3507812981644347,0.4962182161148721,583.6522260509191,498.9372072888075)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,933.5511811023622,312.0)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,933.5511811023622,176.76188976377952)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,194.34183727034122,176.76188976377952)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,194.34183727034122,312.0)"/>
+  </svg>
+</svg>

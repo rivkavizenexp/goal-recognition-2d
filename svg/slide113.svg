@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 136.57721784776902 L 72.8148031496063 0.0 L 145.6296062992126 136.57721784776902 Z" fill="#2f5597" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,128.4124934383202,490.3514960629921)"/>
+  </svg>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 145.62971128608925 0.0 L 100.70581409533557 48.542751662992124 L 48.542751662992124 48.542751662992124 L 48.542751662992124 104.90782112440945 L 0.0 157.36094488188976 Z" fill="#2f5597" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,421.6281364829396,277.1131758530184)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 157.36094488188976 0.0 L 104.90782112440945 48.54271666771653 L 48.54271666771653 48.54271666771653 L 48.54271666771653 100.7057738812022 L 0.0 145.6296062992126 Z" fill="#2f5597" stroke="#41719c" stroke-width="3" transform="matrix(6.123233995736766e-17,1.0,-1.0,6.123233995736766e-17,777.8968503937008,277.1132283464567)"/>
+  </svg>
+</svg>

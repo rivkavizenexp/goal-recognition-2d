@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My experiment</title>
+<!--    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/jspsych.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/plugins/jspsych-instructions.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/plugins/jspsych-free-sort.js"></script>-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/css/jspsych.css">-->
+<script src="https://goal-recog-jspsych-fork.web.app/jspsych.js"></script>
+<script src="https://goal-recog-jspsych-fork.web.app/plugins/jspsych-instructions.js"></script>
+<script src="https://goal-recog-jspsych-fork.web.app/plugins/jspsych-free-sort.js"></script>
+<script src="https://goal-recog-jspsych-fork.web.app/plugins/jspsych-html-button-response.js"></script>
+<script src="https://goal-recog-jspsych-fork.web.app/plugins/jspsych-survey-multi-choice.js"></script>
+<link href="https://goal-recog-jspsych-fork.web.app/css/jspsych.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body></body>
+<script>
+    // var isSvgLoaded = false;
+    // var svgIndex = 0;
+    // var svgs = document.getElementsByClassName("test-img");
+    // for (var i = 0; i < svgs.length; i++) {
+    //     isSvgLoaded = true;
+    //     svgs[i].hidden = true;
+    // }
+
+    /* create timeline */
+    var timeline = [];
+
+    /* define welcome message trial */
+    var welcome = {
+        type: "instructions",
+        pages: ["Welcome to the experiment. Press next to begin.",
+                "In this experiement you will need to move the figure \n" +
+                "where you think it should be",
+                "Video of example"],
+        show_clickable_nav: true,
+        show_page_number: true
+    };
+    timeline.push(welcome);
+
+
+
+    // // definiting two different response scales that can be used.
+    // var page_1_options = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"];
+    //
+    //
+    // var multi_choice_block = {
+    //     type: 'survey-multi-choice',
+    //     questions: [
+    //         {prompt: "I like vegetables", name: 'Vegetables', options: page_1_options, required:true},
+    //         {prompt: "I like fruit", name: 'Fruit', options: page_1_options, required: false}
+    //     ],
+    //     preamble: "Please answer the following questions"
+    //   };
+    //
+    //   timeline.push(multi_choice_block);
+
+    run_test(false, 38);
+    // for(var i = 1; i<=3; i++) {
+    //     run_test(true, i);
+    // }
+    //
+    // for (var i = 1; i <= 3; i++) {
+    //     run_test(false, i);
+    // }
+    var goodbye = {
+        type: "html-button-response",
+        stimulus: "Thank you for participating! ",
+        choices: ['GoodBye!']
+    };
+    timeline.push(goodbye);
+
+    /* start the experiment */
+    jsPsych.init({
+        timeline: timeline,
+        on_finish: function() {
+            jsPsych.data.displayData();
+        },
+        show_progress_bar: true
+    });
+    
+    function run_test(is_example, index) {
+        // var img_loc = "../img/";
+        // var test_suf = "Test";
+        // var exmp_suf = "Exmp";
+        // var suffix = is_example? exmp_suf: test_suf;
+        // var sorting_stimuli = [];
+        // var x_loc = [];
+        // var y_loc = [];
+        // var height = [];
+        // var width = []; // TODO: Later get all input from DB
+
+        // sorting_stimuli.push(img_loc + suffix + index + "_img" + 1 + ".jpg");
+        // // sorting_stimuli.push(${""});
+        // x_loc.push(15);
+        // y_loc.push(100);
+        // height.push(100);
+        // width.push(100);
+        //
+        // sorting_stimuli.push(img_loc + suffix + index + "_img" + 2 + ".jpg");
+        // // sorting_stimuli.push(${""});
+        // x_loc.push(5);
+        // y_loc.push(5);
+        // height.push(200);
+        // width.push(800);
+
+        // var sorting_stimuli = 0;
+        // "id": "svg-{}".format(slide),
+        // "data": "../svg/slide{:02d}.svg".format(slide),
+        var sort_trial = {
+            type: 'free-sort',
+            stim_path: "../svg/slide"+index+".svg",
+            stim_id: "svg-" + index,
+            prompt: "<p>Click and drag the image below to where you think it should be.</p>",
+            button_label: "I'm done, take me to next image"
+        };
+
+        timeline.push(sort_trial);
+    }
+
+</script>
+</html>
