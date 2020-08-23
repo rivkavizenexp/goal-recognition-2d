@@ -42,7 +42,6 @@
     timeline.push(welcome);
 
 
-
     // // definiting two different response scales that can be used.
     // var page_1_options = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"];
     //
@@ -112,7 +111,7 @@
         // "data": "../svg/slide{:02d}.svg".format(slide),
         var sort_trial = {
             type: 'free-sort',
-            stim_path: "https://goal-recognition-2d.web.app/slide"+index+".svg",
+            stim_path: "./svg/slide"+index+".svg",
             stim_id: "svg-" + index,
             prompt: "<p>Click and drag the image below to where you think it should be.</p>",
             button_label: "I'm done, take me to next image"
