@@ -4,10 +4,6 @@
     <style type="text/css">
 <![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
   </defs>
-  <svg id="dynamic">
-    <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,433.23853018372705,197.33312335958004)"/>
-  </svg>
   <svg id="static_1">
     <defs/>
     <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,352.0,352.7617847769029)"/>
@@ -51,5 +47,9 @@
   <svg id="static_11">
     <defs/>
     <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,782.3818372703412,581.1665091863517)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,433.23853018372705,197.33312335958004)"/>
   </svg>
 </svg>

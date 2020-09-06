@@ -4,10 +4,10 @@
     <style type="text/css">
 <![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
   </defs>
-  <svg id="dynamic">
+  <svg id="static_1">
     <defs/>
   </svg>
-  <svg id="static_1">
+  <svg id="dynamic">
     <defs/>
   </svg>
 </svg>

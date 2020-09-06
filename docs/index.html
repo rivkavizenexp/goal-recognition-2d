@@ -18,53 +18,37 @@
 </head>
 <body></body>
 <script>
-    // var isSvgLoaded = false;
-    // var svgIndex = 0;
-    // var svgs = document.getElementsByClassName("test-img");
-    // for (var i = 0; i < svgs.length; i++) {
-    //     isSvgLoaded = true;
-    //     svgs[i].hidden = true;
-    // }
 
     /* create timeline */
     var timeline = [];
 
+    const num_pictures = 15;
+    const initial_delay = 5;
+    const move_time = 30;
+
     /* define welcome message trial */
     var welcome = {
         type: "instructions",
-        pages: ["Welcome to the experiment. Press next to begin.",
-                "In this experiement you will need to move the figure \n" +
-                "where you think it should be",
-                "Video of example"],
+        pages: ["<p>In the next experiment you will see " + num_pictures +
+        " different pictures, one after the other</p>" +
+        "<p>Each picture will contain several objects. </p>" +
+        "<p>One of the objects will be flashing</p>",
+        "<p>" + initial_delay + " seconds after the picture will be presented," +
+        " you will be asked to move the flashing object to a position in " +
+        "the picture which is most suitable place for you.</p>" +
+        "<p>You will have " + move_time + " seconds to move the object." +
+        " When the time will be expired, you will be asked to move to the next picture.</p>" +
+        "<p>Bonus will be added to the payment if all flashing objects will be moved.</p>"],
         show_clickable_nav: true,
         show_page_number: true
     };
     timeline.push(welcome);
 
+    add_questions();
 
-    // // definiting two different response scales that can be used.
-    // var page_1_options = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"];
-    //
-    //
-    // var multi_choice_block = {
-    //     type: 'survey-multi-choice',
-    //     questions: [
-    //         {prompt: "I like vegetables", name: 'Vegetables', options: page_1_options, required:true},
-    //         {prompt: "I like fruit", name: 'Fruit', options: page_1_options, required: false}
-    //     ],
-    //     preamble: "Please answer the following questions"
-    //   };
-    //
-    //   timeline.push(multi_choice_block);
+    run_test(false, 157);
 
-    run_test(false, 38);
-    // for(var i = 1; i<=3; i++) {
-    //     run_test(true, i);
-    // }
-    //
-    // for (var i = 1; i <= 3; i++) {
-    //     run_test(false, i);
-    // }
+
     var goodbye = {
         type: "html-button-response",
         stimulus: "Thank you for participating! ",
@@ -82,33 +66,6 @@
     });
     
     function run_test(is_example, index) {
-        // var img_loc = "../img/";
-        // var test_suf = "Test";
-        // var exmp_suf = "Exmp";
-        // var suffix = is_example? exmp_suf: test_suf;
-        // var sorting_stimuli = [];
-        // var x_loc = [];
-        // var y_loc = [];
-        // var height = [];
-        // var width = []; // TODO: Later get all input from DB
-
-        // sorting_stimuli.push(img_loc + suffix + index + "_img" + 1 + ".jpg");
-        // // sorting_stimuli.push(${""});
-        // x_loc.push(15);
-        // y_loc.push(100);
-        // height.push(100);
-        // width.push(100);
-        //
-        // sorting_stimuli.push(img_loc + suffix + index + "_img" + 2 + ".jpg");
-        // // sorting_stimuli.push(${""});
-        // x_loc.push(5);
-        // y_loc.push(5);
-        // height.push(200);
-        // width.push(800);
-
-        // var sorting_stimuli = 0;
-        // "id": "svg-{}".format(slide),
-        // "data": "../svg/slide{:02d}.svg".format(slide),
         var sort_trial = {
             type: 'free-sort',
             stim_path: "./svg/slide"+index+".svg",
@@ -118,6 +75,90 @@
         };
 
         timeline.push(sort_trial);
+    }
+
+    function add_questions() {
+        var quest1 = {
+            type: 'html-button-response',
+            stimulus: '<p>1. How Many pictures will be in the experiment?</p>',
+            choices: [num_pictures, num_pictures-2, 1, num_pictures + 5],
+            prompt: "<p>Choose the correct answer</p>"
+            };
+        var loop1 = {
+            timeline: [quest1],
+            loop_function: function (data) {
+                console.log(typeof (data.values()[0].button_pressed));
+                if (data.values()[0].button_pressed !== "0"){
+                    alert('Wrong answer, please try again.');
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+
+        var quest2 = {
+            type: 'html-button-response',
+            stimulus: '<p>2. For each picture, which object should be moved?</p>',
+            choices: ['The non-flashing objects in the picture',
+                'All objects in the picture',
+                'The flashing object in the picture'],
+            prompt: "<p>Choose the correct answer</p>"
+            };
+        var loop2 = {
+            timeline: [quest2],
+            loop_function: function (data) {
+                if (data.values()[0].button_pressed !== "2"){
+                    alert('Wrong answer, please try again.');
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+
+        var quest3 = {
+            type: 'html-button-response',
+            stimulus: '<p>3. How much time after picture is presented you will be able to move the flashing object?</p>',
+            choices: [initial_delay, 0, initial_delay + 7],
+            prompt: "<p>Choose the correct answer</p>"
+            };
+        var loop3 = {
+            timeline: [quest3],
+            loop_function: function (data) {
+                if (data.values()[0].button_pressed !== "0"){
+                    alert('Wrong answer, please try again.');
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+
+        var quest4 = {
+            type: 'html-button-response',
+            stimulus: '<p>4. When will you get bonus?</p>',
+            choices: ['If the flashing object in one of the pictures will not be moved',
+                'If for all pictures, the flashing object will not be moved before moving to next picture',
+                'If for all pictures, the flashing object will be moved before moving to next picture'],
+            prompt: "<p>Choose the correct answer</p>"
+            };
+        var loop4 = {
+            timeline: [quest4],
+            loop_function: function (data) {
+                if (data.values()[0].button_pressed !== "2"){
+                    alert('Wrong answer, please try again.');
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+
+        timeline.push(loop1);
+        timeline.push(loop2);
+        timeline.push(loop3);
+        timeline.push(loop4);
     }
 
 </script>

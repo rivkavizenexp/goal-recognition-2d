@@ -4,12 +4,6 @@
     <style type="text/css">
 <![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
   </defs>
-  <svg id="dynamic">
-    <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,607.84,574.9998950131234)"/>
-    <path class="non-scaling-stroke" d="M 9.41944591704063 9.41944591704063 L 54.90055408295937 54.90055408295937 M 54.90055408295937 9.41944591704063 L 9.41944591704063 54.90055408295937" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,607.84,574.9998950131234)"/>
-    <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,607.84,574.9998950131234)"/>
-  </svg>
   <svg id="static_1">
     <defs/>
     <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,253.12472440944882,228.41291338582678)"/>
@@ -33,5 +27,11 @@
     <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1021.5060367454068,228.41291338582678)"/>
     <path class="non-scaling-stroke" d="M 32.16 0.0 L 32.16 64.32 M 0.0 32.16 L 64.32 32.16" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1021.5060367454068,228.41291338582678)"/>
     <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1021.5060367454068,228.41291338582678)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,607.84,574.9998950131234)"/>
+    <path class="non-scaling-stroke" d="M 9.41944591704063 9.41944591704063 L 54.90055408295937 54.90055408295937 M 54.90055408295937 9.41944591704063 L 9.41944591704063 54.90055408295937" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,607.84,574.9998950131234)"/>
+    <path class="non-scaling-stroke" d="M 0.0 32.16 A 32.16 32.16 0 0 1 32.16 -6.111040515849597e-15 A 32.16 32.16 0 0 1 64.32 32.15999999999999 A 32.16 32.16 0 0 1 32.16 64.32 A 32.16 32.16 0 0 1 0.0 32.16 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,607.84,574.9998950131234)"/>
   </svg>
 </svg>
