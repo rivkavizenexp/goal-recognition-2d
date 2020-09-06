@@ -46,8 +46,13 @@
 
     add_questions();
 
-    run_test(false, 157);
-
+    run_test(false, 12);
+    run_test(false, 25);
+    run_test(false, 46);
+    run_test(false, 90);
+    run_test(false, 120);
+    run_test(false, 150);
+    run_test(false, 170);
 
     var goodbye = {
         type: "html-button-response",
@@ -59,9 +64,7 @@
     /* start the experiment */
     jsPsych.init({
         timeline: timeline,
-        on_finish: function() {
-            jsPsych.data.displayData();
-        },
+
         show_progress_bar: true
     });
     
