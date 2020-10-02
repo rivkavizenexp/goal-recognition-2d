@@ -15,5 +15,6 @@
   <svg id="dynamic">
     <defs/>
     <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#a35fd1" stroke="#41719c" stroke-width="3" transform="matrix(-0.7189149191094579,0.6950980787499282,-0.6950980787499282,-0.7189149191094579,687.0241199602426,653.2706624054989)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
   </svg>
 </svg>

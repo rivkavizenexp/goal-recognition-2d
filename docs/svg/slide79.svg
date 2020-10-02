@@ -6,5 +6,6 @@
   </defs>
   <svg id="dynamic">
     <defs/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
   </svg>
 </svg>

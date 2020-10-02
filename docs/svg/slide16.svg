@@ -31,5 +31,6 @@
     <path class="non-scaling-stroke" d="M 21.292129629629628 28.189511422183337 A 3.8541666666666665 4.189326334208224 0 1 1 21.292129629629628 28.189511422183337 M 44.99953703703704 28.189511422183337 A 3.8541666666666665 4.189326334208224 0 1 1 44.99953703703704 28.189511422183337" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,603.0,360.0)"/>
     <path class="non-scaling-stroke" d="M 16.94575786902622 61.75670279615048 Q 37.0 60.72713395625547 57.0074074074074 61.75670279615048" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,603.0,360.0)"/>
     <path class="non-scaling-stroke" d="M 0.0 40.21753280839895 A 37.0 40.21753280839895 0 1 1 0.0 40.21753280839896 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,603.0,360.0)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
   </svg>
 </svg>

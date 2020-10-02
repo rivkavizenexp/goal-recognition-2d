@@ -52,5 +52,6 @@
     <path class="non-scaling-stroke" d="M 22.706439365218237 26.28472222222222 A 4.110176071741033 3.90625 0 1 1 22.706439365218237 26.28472222222222 M 47.98858906872752 26.28472222222222 A 4.110176071741033 3.90625 0 1 1 47.98858906872752 26.28472222222222" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1107.4079790026246,597.9998950131234)"/>
     <path class="non-scaling-stroke" d="M 18.071363937934414 53.854 Q 39.45769028871391 67.813 60.79407096335181 53.854" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1107.4079790026246,597.9998950131234)"/>
     <path class="non-scaling-stroke" d="M 0.0 37.5 A 39.45769028871391 37.5 0 1 1 0.0 37.50000000000001 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1107.4079790026246,597.9998950131234)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
   </svg>
 </svg>
