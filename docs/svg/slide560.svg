@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 352.0 0.0 L 352.0 156.12115485564306 L 0.0 156.12115485564306 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,416.96976377952757,157.0909186351706)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,544.9697637795275,187.15149606299212)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 47.51517060367454 L 0.0 0.0 L 48.48482939632546 47.51517060367454 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(-0.7030547037149351,-0.711135770148222,0.711135770148222,-0.7030547037149351,769.1185337551183,269.09392141811145)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 15.0 147.0 L 14.0 38.0 L 0.0 39.0 L 15.0 0.0 L 31.0 38.0 L 10.0 37.0" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,0.6870748299319728,566.9697637795275,612.0)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 96.0 48.0 A 48.0 48.0 0 1 1 47.99999999999999 0.0 L 48.0 48.0 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(-0.7421404148159774,-0.6702444365280245,0.6702444365280245,-0.7421404148159774,585.920718243911,622.3700109222549)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 408.2263517060367 0.0 L 408.2263517060367 231.7330183727034 L 0.0 231.7330183727034 Z" fill="#a35fd1" stroke="#ffffff" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,396.3922309711286,153.25658792650918)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#ffffff" stroke="#c967bb" stroke-width="3" transform="matrix(-0.7128766243047461,0.7012894684221844,-0.7012894684221844,-0.7128766243047461,668.9443294062733,384.38862442724485)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#ffffff" stroke="#c967bb" stroke-width="3" transform="matrix(-0.7128766243047461,0.7012894684221844,-0.7012894684221844,-0.7128766243047461,803.0391325558795,384.38883440099823)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#a35fd1" stroke="#41719c" stroke-width="3" transform="matrix(-0.7189149191094579,0.6950980787499282,-0.6950980787499282,-0.7189149191094579,687.0241199602426,653.2706624054989)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>

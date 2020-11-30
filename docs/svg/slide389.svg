@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,552.3564304461943,197.33312335958004)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,471.1179002624672,352.7617847769029)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,471.1179002624672,195.80955380577427)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,633.5949606299213,197.33312335958004)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,631.9280839895013,351.2384251968504)"/>
+  </svg>
+  <svg id="static_6">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,552.3564304461943,274.2856692913386)"/>
+  </svg>
+  <svg id="static_7">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,471.1179002624672,274.28577427821523)"/>
+  </svg>
+  <svg id="static_8">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,711.4997375328084,274.28556430446196)"/>
+  </svg>
+  <svg id="static_9">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,711.4997375328084,351.2384251968504)"/>
+  </svg>
+  <svg id="static_10">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,552.3564304461943,351.2384251968504)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,1041.6232020997375,197.33312335958004)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>

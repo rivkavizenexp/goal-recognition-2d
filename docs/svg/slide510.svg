@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 323.2886089238845 0.0 L 323.2886089238845 148.25774278215223 L 0.0 148.25774278215223 Z" fill="#cf1203" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,131.7113910761155,72.74215223097113)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 183.91748031496064 0.0 L 183.91748031496064 32.00010498687664 L 0.0 32.00010498687664 Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,131.7113910761155,104.49469816272966)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 183.91748031496064 0.0 L 183.91748031496064 32.00010498687664 L 0.0 32.00010498687664 Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,131.7113910761155,165.0514435695538)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 323.2886089238845 0.0 L 323.2886089238845 148.25774278215223 L 0.0 148.25774278215223 Z" fill="#181717" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,125.71139107611549,418.7421522309711)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 183.91748031496064 0.0 L 183.91748031496064 32.00010498687664 L 0.0 32.00010498687664 Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,125.71139107611549,479.2988976377953)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 183.91748031496064 0.0 L 183.91748031496064 32.00010498687664 L 0.0 32.00010498687664 Z" fill="#cf1203" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,975.7732283464567,327.99989501312336)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>

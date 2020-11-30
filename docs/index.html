@@ -2,17 +2,40 @@
 <html>
 <head>
 <title>My experiment</title>
-<script src="https://goal-recognition.web.app/jsPsych/jspsych.js"></script>
-<script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-instructions.js"></script>
-<script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-free-sort.js"></script>
-<script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-html-button-response.js"></script>
-<script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
-<link href="https://goal-recognition.web.app/jsPsych/css/jspsych.css" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://goal-recognition.web.app/jsPsych/jspsych.js"></script>
+    <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-instructions.js"></script>
+    <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-free-sort.js"></script>
+    <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-html-button-response.js"></script>
+    <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+    <link href="https://goal-recognition.web.app/jsPsych/css/jspsych.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
-<body></body>
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDgE5nSy7lV1LQyp7VYP9lRvvYkL1FZu-8",
+        authDomain: "goal-recognition.firebaseapp.com",
+        databaseURL: "https://goal-recognition.firebaseio.com",
+        projectId: "goal-recognition",
+        storageBucket: "goal-recognition.appspot.com",
+        messagingSenderId: "50275108224",
+        appId: "1:50275108224:web:2d1c124110bbd8fd7c2d65"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Get a reference to the database service
+      var database = firebase.database();
+
+    </script>
+</body>
 <script>
 
     /* create timeline */
@@ -41,14 +64,11 @@
     timeline.push(welcome);
 
     add_questions();
+    var slides_to_test = [12, 25, 35, 80, 130, 150, 185, 250, 324, 420, 577];
 
-    run_test(false, 12);
-    run_test(false, 25);
-    run_test(false, 46);
-    run_test(false, 90);
-    run_test(false, 120);
-    run_test(false, 150);
-    run_test(false, 170);
+    for (var i = 0; i < slides_to_test.length; i++) {
+        run_test(false, slides_to_test[i]);
+    }
 
     var goodbye = {
         type: "html-button-response",
@@ -60,7 +80,10 @@
     /* start the experiment */
     jsPsych.init({
         timeline: timeline,
-
+        on_finish: function(data) {
+            var exp_data = data.last(slides_to_test.length+1).first(slides_to_test.length).values();
+            send_trial_data(exp_data)
+        },
         show_progress_bar: true
     });
     
@@ -70,10 +93,40 @@
             stim_path: "./svg/slide"+index+".svg",
             stim_id: "svg-" + index,
             prompt: "<p>Click and drag the image below to where you think it should be.</p>",
-            button_label: "I'm done, take me to next image"
+            button_label: "I'm done, take me to next image",
         };
 
         timeline.push(sort_trial);
+    }
+
+    function send_trial_data(data) {
+        var slides_post_data = {};
+        var data_array = data;
+        var stim_ids = [];
+        for (let i = 0; i < data_array.length; i++) {
+            trial_data = data_array[i];
+            slides_post_data[trial_data["stim_id"]] = trial_data;
+            stim_ids.push(trial_data["stim_id"])
+            // todo: need to add stim_id to trial's data
+            // todo: or instead just hold a list of the stim_id
+        }
+
+        var worker_id = Math.floor(Math.random() * 100); //todo: add worker id
+
+
+        var updates = {};
+        updates['/workers/' + worker_id] = slides_post_data;
+        for (let i = 0; i < stim_ids.length; i++) {
+            updates['/slides/' + stim_ids[i] + '/' + worker_id] = slides_post_data[stim_ids[i]];
+        }
+
+        return database.ref().update(updates, function(error) {
+            if (error) {
+              console.log('Failed' + error)
+            } else {
+              console.log('Success!' + error)
+            }
+        });
     }
 
     function add_questions() {
@@ -86,7 +139,6 @@
         var loop1 = {
             timeline: [quest1],
             loop_function: function (data) {
-                console.log(typeof (data.values()[0].button_pressed));
                 if (data.values()[0].button_pressed !== "0"){
                     alert('Wrong answer, please try again.');
                     return true;

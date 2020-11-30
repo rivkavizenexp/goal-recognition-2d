@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 L 21.6 26.4 L 21.6 37.2 L 37.2 37.2 L 37.2 21.6 L 26.4 21.6 L 48.0 0.0 L 69.6 21.6 L 58.8 21.6 L 58.8 37.2 L 74.4 37.2 L 74.4 26.4 L 96.0 48.0 L 74.4 69.6 L 74.4 58.8 L 58.8 58.8 L 58.8 74.4 L 69.6 74.4 L 48.0 96.0 L 26.4 74.4 L 37.2 74.4 L 37.2 58.8 L 21.6 58.8 L 21.6 69.6 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,248.90152230971128,534.3926509186351)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 L 21.6 26.4 L 21.6 37.2 L 37.2 37.2 L 37.2 21.6 L 26.4 21.6 L 48.0 0.0 L 69.6 21.6 L 58.8 21.6 L 58.8 37.2 L 74.4 37.2 L 74.4 26.4 L 96.0 48.0 L 74.4 69.6 L 74.4 58.8 L 58.8 58.8 L 58.8 74.4 L 69.6 74.4 L 48.0 96.0 L 26.4 74.4 L 37.2 74.4 L 37.2 58.8 L 21.6 58.8 L 21.6 69.6 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,360.68997375328087,534.3926509186351)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 L 21.6 26.4 L 21.6 37.2 L 37.2 37.2 L 37.2 21.6 L 26.4 21.6 L 48.0 0.0 L 69.6 21.6 L 58.8 21.6 L 58.8 37.2 L 74.4 37.2 L 74.4 26.4 L 96.0 48.0 L 74.4 69.6 L 74.4 58.8 L 58.8 58.8 L 58.8 74.4 L 69.6 74.4 L 48.0 96.0 L 26.4 74.4 L 37.2 74.4 L 37.2 58.8 L 21.6 58.8 L 21.6 69.6 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,304.9015223097113,455.0)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 54.0 L 18.0 36.0 L 18.0 45.0 L 39.0 45.0 L 39.0 18.0 L 30.0 18.0 L 48.0 0.0 L 66.0 18.0 L 57.0 18.0 L 57.0 45.0 L 78.0 45.0 L 78.0 36.0 L 96.0 54.0 L 78.0 72.0 L 78.0 63.0 L 18.0 63.0 L 18.0 72.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,899.3246194225721,539.7853018372704)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 54.0 L 18.0 36.0 L 18.0 45.0 L 39.0 45.0 L 39.0 18.0 L 30.0 18.0 L 48.0 0.0 L 66.0 18.0 L 57.0 18.0 L 57.0 45.0 L 78.0 45.0 L 78.0 36.0 L 96.0 54.0 L 78.0 72.0 L 78.0 63.0 L 18.0 63.0 L 18.0 72.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,795.3246194225721,540.3926509186351)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 L 21.6 26.4 L 21.6 37.2 L 37.2 37.2 L 37.2 21.6 L 26.4 21.6 L 48.0 0.0 L 69.6 21.6 L 58.8 21.6 L 58.8 37.2 L 74.4 37.2 L 74.4 26.4 L 96.0 48.0 L 74.4 69.6 L 74.4 58.8 L 58.8 58.8 L 58.8 74.4 L 69.6 74.4 L 48.0 96.0 L 26.4 74.4 L 37.2 74.4 L 37.2 58.8 L 21.6 58.8 L 21.6 69.6 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,592.0,222.0)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="720.0" version="1.1" width="1280.0" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <style type="text/css">
+<![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]>    </style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 77.71433070866142 L 45.714330708661414 0.0 L 91.42866141732283 77.71433070866142 Z" fill="#c16f79" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,164.57133858267716,333.8045144356955)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 77.71433070866142 L 43.843199999999996 0.0 L 96.0 77.71433070866142 Z" fill="#c16f79" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,384.88839895013126,333.8044094488189)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 77.71433070866142 L 45.714330708661414 0.0 L 91.42866141732283 77.71433070866142 Z" fill="#c16f79" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,274.7298687664042,333.8044094488189)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 43.2207874015748 L 26.28577427821522 0.0 L 52.57154855643044 43.2207874015748 Z" fill="#c16f79" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,978.9843569553806,368.2979527559055)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 43.2207874015748 L 26.28577427821522 0.0 L 52.57154855643044 43.2207874015748 Z" fill="#c16f79" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,903.3467716535433,368.2979527559055)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 77.71433070866142 L 45.714330708661414 0.0 L 91.42866141732283 77.71433070866142 Z" fill="#c16f79" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,578.6577427821522,137.9046719160105)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>
