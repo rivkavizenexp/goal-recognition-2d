@@ -14,8 +14,9 @@
 </head>
 <body>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 
     <script>
       // Your web app's Firebase configuration
@@ -33,6 +34,9 @@
 
       // Get a reference to the database service
       var database = firebase.database();
+
+      // Get a reference to the authentication service
+      var auth = firebase.auth();
 
     </script>
 </body>
@@ -81,8 +85,9 @@
     jsPsych.init({
         timeline: timeline,
         on_finish: function(data) {
+            var turk_info = jsPsych.turk.turkInfo();
             var exp_data = data.last(slides_to_test.length+1).first(slides_to_test.length).values();
-            send_trial_data(exp_data)
+            send_trial_data(exp_data, turk_info)
         },
         show_progress_bar: true
     });
@@ -99,7 +104,7 @@
         timeline.push(sort_trial);
     }
 
-    function send_trial_data(data) {
+    function send_trial_data(data, turk_info) {
         var slides_post_data = {};
         var data_array = data;
         var stim_ids = [];
@@ -111,22 +116,51 @@
             // todo: or instead just hold a list of the stim_id
         }
 
-        var worker_id = Math.floor(Math.random() * 100); //todo: add worker id
+        // Define sign in callback
+        auth.onAuthStateChanged(function(user){
+            if (user) {
+                // User is signed in, with this ID
+                var uid = user.uid;
+                var worker_id = uid;
 
+                if (!turk_info.outsideTurk){
+                    // If running from Mturk, we have the worker ID as well
+                    worker_id = turk_info.workerId;
+                }
+                console.log('uid: ' + uid);
+                var updates = {};
+                updates['/workers/' + worker_id + '/' + uid] = slides_post_data;
+                for (let i = 0; i < stim_ids.length; i++) {
+                    updates['/slides/' + stim_ids[i] + '/' + worker_id + '/' + uid] =
+                        slides_post_data[stim_ids[i]];
+                }
 
-        var updates = {};
-        updates['/workers/' + worker_id] = slides_post_data;
-        for (let i = 0; i < stim_ids.length; i++) {
-            updates['/slides/' + stim_ids[i] + '/' + worker_id] = slides_post_data[stim_ids[i]];
-        }
-
-        return database.ref().update(updates, function(error) {
-            if (error) {
-              console.log('Failed' + error)
-            } else {
-              console.log('Success!' + error)
+                return database.ref().update(updates, function(error) {
+                    if (error) {
+                      console.log('Failed ' + error);
+                    } else {
+                      console.log('Success! Worker Id:' + worker_id);
+                      auth.signOut();
+                    }
+                });
             }
         });
+
+        // Sign in to FireBase
+        auth.signInAnonymously().catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+
+          if (errorCode === 'auth/operation-not-allowed') {
+            alert('You must enable Anonymous auth in the Firebase Console.');
+          } else {
+            console.error(error);
+          }
+        });
+
+
+
+
     }
 
     function add_questions() {
