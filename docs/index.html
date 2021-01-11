@@ -38,6 +38,8 @@
       // Get a reference to the authentication service
       var auth = firebase.auth();
 
+      var host_url = "https://goal-recognition.web.app/"
+
     </script>
 </body>
 <script>
@@ -95,7 +97,7 @@
     function run_test(is_example, index) {
         var sort_trial = {
             type: 'free-sort',
-            stim_path: "./svg/slide"+index+".svg",
+            stim_path: host_url + "svg/slide"+index+".svg",
             stim_id: "svg-" + index,
             prompt: "<p>Click and drag the image below to where you think it should be.</p>",
             button_label: "I'm done, take me to next image",
@@ -109,11 +111,9 @@
         var data_array = data;
         var stim_ids = [];
         for (let i = 0; i < data_array.length; i++) {
-            trial_data = data_array[i];
+            let trial_data = data_array[i];
             slides_post_data[trial_data["stim_id"]] = trial_data;
             stim_ids.push(trial_data["stim_id"])
-            // todo: need to add stim_id to trial's data
-            // todo: or instead just hold a list of the stim_id
         }
 
         // Define sign in callback
