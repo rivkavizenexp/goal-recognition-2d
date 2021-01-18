@@ -40,7 +40,7 @@ class MturkHandler(object):
 
         return client
 
-    def create_question_xml(self):
+    def create_question_xml(self, slides_lst):
         XHTML_NAMESPACE = xml_schema_url
         XHTML = "{%s}" % XHTML_NAMESPACE
         NSMAP = {
@@ -53,6 +53,10 @@ class MturkHandler(object):
         index_path = Path.cwd() / 'docs' / 'index.html'
         index_html = index_path.read_text()
 
+        index_html = index_html.replace('var slides_to_test = [12];',
+                                        'var slides_to_test = ' +
+                                        str(slides_lst) + ';')
+
         html_content = SubElement(envelope, 'HTMLContent')
         html_content.text = CDATA(index_html)
 
@@ -61,14 +65,14 @@ class MturkHandler(object):
 
         return tostring(envelope, encoding='unicode')
 
-    def create_hit(self, title):
+    def create_hit(self, title, slides_lst):
         """
         Creates a HIT and sends it to Mturk
         """
         # with open("question.xml", "r") as question_xml:
         #     test_question = question_xml.read()
 
-        test_question = self.create_question_xml()
+        test_question = self.create_question_xml(slides_lst)
 
         response = self.client.create_hit(
             # Change/Add to these parameters as you see fit
@@ -86,6 +90,7 @@ class MturkHandler(object):
         hit_type_id = response['HIT']['HITTypeId']
         hit_id = response['HIT']['HITId']
         print("\nCreated HIT: {}".format(hit_id))
+        print("With shapes from slides: {}".format(slides_lst))
         print("\nCreated HIT type id: {}".format(hit_type_id))
 
         # This will return $10,000.00 in the MTurk Developer Sandbox

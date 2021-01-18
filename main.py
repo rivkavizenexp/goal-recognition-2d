@@ -1,8 +1,6 @@
 import argparse
+from arg_parser import parse_subccmd
 
-from bs4 import BeautifulSoup
-from shapes.shape_update import ShapeUpdate
-from mturk.MturkHandler import MturkHandler
 
 def parse_arguments():
     """
@@ -47,47 +45,14 @@ def parse_arguments():
                                                    "mainly creating HITs")
     write_mturk.add_argument('-t', '--title', type=str, required=True,
                              help="Title of the HIT")
+    write_mturk.add_argument('-c', '--choose', type=str, required=False,
+                             help="Choose a list of slides to add to HIT")
 
     args = vars(ap.parse_args())
     return args
 
 
-def parse_update(args):
-    file_path = args['file_path']
-    output = args['output']
-    slide_nums = args['slide_num']
-    shape_update = ShapeUpdate(file_path, output)
-    if slide_nums:
-        for number in slide_nums:
-            shape_update.update_svg_by_num(number)
-    else:
-        shape_update.update_svg()
-
-
-def parse_mturk(args):
-    sub_turk_cmd = args['mturkcmd']
-    if sub_turk_cmd == 'read':
-        mturk_read()
-    elif sub_turk_cmd == 'write':
-        title = args['title']
-        mturk_write(title)
-
-
-def mturk_read():
-    mturk_handler = MturkHandler()
-    mturk_handler.read_hits()
-
-
-def mturk_write(title):
-    mturk_handler = MturkHandler()
-    # mturk_handler.create_hit(title)
-
-
 if __name__ == '__main__':
     arguments = parse_arguments()
-    print(arguments)
     sub_cmd = arguments['subcmd']
-    if sub_cmd == 'update':
-        parse_update(arguments)
-    elif sub_cmd == 'mturk':
-        parse_mturk(arguments)
+    parse_subccmd(sub_cmd, arguments)

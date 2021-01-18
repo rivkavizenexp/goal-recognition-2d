@@ -74,18 +74,18 @@
     if (!is_preview) {
         add_questions();
 
-        var slides_to_test = [12, 25, 35, 80, 130, 150, 185, 250, 324, 420, 577];
+        var slides_to_test = [12];
 
         for (var i = 0; i < slides_to_test.length; i++) {
             run_test(false, slides_to_test[i]);
         }
-    }
 
-    var goodbye = {
-        type: "html-button-response",
-        stimulus: "Thank you for participating! ",
-        choices: ['GoodBye!']
-    };
+        var goodbye = {
+            type: "html-button-response",
+            stimulus: "Thank you for participating! ",
+            choices: ['GoodBye!']
+        };
+    }
 
     timeline.push(goodbye);
 

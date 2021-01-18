@@ -143,7 +143,7 @@ class SvgMaker(object):
         self.dynamic_path = None
         self.dynamic_svg = None
         self.slide_number = slide_number
-        self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, 'slide{:02d}.svg'.format(slide_number)),
+        self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, 'slide{}.svg'.format(slide_number)),
                                      size=svg_coords(slide_size[0], slide_size[1]))
         self._dwg.defs.add(self._dwg.style('.non-scaling-stroke { vector-effect: non-scaling-stroke; }'))
         if self.svg_from_shapes(slide.shapes, self._dwg):
