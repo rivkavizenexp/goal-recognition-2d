@@ -10,7 +10,6 @@ class MturkHandler(object):
 
     def __init__(self):
         self.client = self.init_client()
-        # self.question = question
 
     def init_client(self):
         config = configparser.ConfigParser()
@@ -24,6 +23,7 @@ class MturkHandler(object):
         aws_access_key_id = config['default']['aws_access_key_id']
         aws_secret_access_key = config['default']['aws_secret_access_key']
 
+        # Sandbox url
         endpoint_url = 'https://mturk-requester-sandbox.us-east-1.amazonaws' \
                        '.com'
 
@@ -44,9 +44,8 @@ class MturkHandler(object):
         XHTML_NAMESPACE = xml_schema_url
         XHTML = "{%s}" % XHTML_NAMESPACE
         NSMAP = {
-            None : XHTML_NAMESPACE,
+            None: XHTML_NAMESPACE,
             'xsi': 'http://www.w3.org/2001/XMLSchema-instance'
-            # ''
             }
         envelope = Element("HTMLQuestion", nsmap=NSMAP)
 
@@ -69,9 +68,6 @@ class MturkHandler(object):
         """
         Creates a HIT and sends it to Mturk
         """
-        # with open("question.xml", "r") as question_xml:
-        #     test_question = question_xml.read()
-
         test_question = self.create_question_xml(slides_lst)
 
         response = self.client.create_hit(

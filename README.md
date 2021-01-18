@@ -1,8 +1,8 @@
-Goal Recognition 2d
--
+#Goal Recognition 2d
 
-**Installation**
+Experiments of goal recognition in 2d over Amazon's Mechanical Turk
 
-Get public and secret access key from AWS and place in the following tree - 
+## Installation  
 
-`.aws.credentials`
+Described in [SETUP](SETUP.md) file
+
