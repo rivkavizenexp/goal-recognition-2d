@@ -1,11 +1,10 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
 
 ### Project specific ###
-img/
 venv/
-.aws/
-
-
+.aws/credentials
+*.pptx
+.idea
 
 # Created by https://www.gitignore.io/api/python,jetbrains
 # Edit at https://www.gitignore.io/?templates=python,jetbrains

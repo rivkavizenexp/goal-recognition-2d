@@ -46,6 +46,8 @@
 
     /* create timeline */
     var timeline = [];
+    var turk_info = jsPsych.turk.turkInfo();
+    var is_preview = turk_info.previewMode;
 
     const num_pictures = 15;
     const initial_delay = 5;
@@ -69,11 +71,14 @@
     };
     timeline.push(welcome);
 
-    add_questions();
-    var slides_to_test = [12, 25, 35, 80, 130, 150, 185, 250, 324, 420, 577];
+    if (!is_preview) {
+        add_questions();
 
-    for (var i = 0; i < slides_to_test.length; i++) {
-        run_test(false, slides_to_test[i]);
+        var slides_to_test = [12, 25, 35, 80, 130, 150, 185, 250, 324, 420, 577];
+
+        for (var i = 0; i < slides_to_test.length; i++) {
+            run_test(false, slides_to_test[i]);
+        }
     }
 
     var goodbye = {
@@ -81,17 +86,17 @@
         stimulus: "Thank you for participating! ",
         choices: ['GoodBye!']
     };
+
     timeline.push(goodbye);
 
     /* start the experiment */
     jsPsych.init({
         timeline: timeline,
         on_finish: function(data) {
-            var turk_info = jsPsych.turk.turkInfo();
             var exp_data = data.last(slides_to_test.length+1).first(slides_to_test.length).values();
-            send_trial_data(exp_data, turk_info)
+            send_trial_data(exp_data, turk_info);
         },
-        show_progress_bar: true
+        show_progress_bar: false
     });
     
     function run_test(is_example, index) {
@@ -141,6 +146,7 @@
                     } else {
                       console.log('Success! Worker Id:' + worker_id);
                       auth.signOut();
+                      jsPsych.turk.submitToTurk(data); // Uncomment when working with AWS
                     }
                 });
             }
@@ -157,10 +163,6 @@
             console.error(error);
           }
         });
-
-
-
-
     }
 
     function add_questions() {
