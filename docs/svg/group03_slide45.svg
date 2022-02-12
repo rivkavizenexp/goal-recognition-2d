@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="720.0" version="1.1" width="1280.0">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M195.5 198.5 243.5 166.5 291.5 198.5 243.5 230.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M302.5 198.5 350.5 166.5 398.5 198.5 350.5 230.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M409.5 277.5 457.5 245.5 505.5 277.5 457.5 309.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M844.5 197 892.5 164.5 940.5 197 892.5 229.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M957.5 199.5 1005.5 167.5 1053.5 199.5 1005.5 231.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_6">
+    <defs/>
+    <path class="non-scaling-stroke" d="M409.5 199.5 457.5 167.5 505.5 199.5 457.5 231.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_7">
+    <defs/>
+    <path class="non-scaling-stroke" d="M409.5 356.5 457.5 324.5 505.5 356.5 457.5 388.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_8">
+    <defs/>
+    <path class="non-scaling-stroke" d="M731.5 197 779.5 164.5 827.5 197 779.5 229.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+  </svg>
+  <svg id="static_9">
+    <defs/>
+    <path class="non-scaling-stroke" d="M731.5 277.5 779.5 245.5 827.5 277.5 779.5 309.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3" />
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+      <path class="non-scaling-stroke" d="M592.5 617 640.5 584.5 688.5 617 640.5 649.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE" /> 
+         <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+  </svg>
+</svg>
+

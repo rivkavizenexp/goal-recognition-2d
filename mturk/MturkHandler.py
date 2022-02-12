@@ -52,7 +52,7 @@ class MturkHandler(object):
         index_path = Path.cwd() / 'docs' / 'index.html'
         index_html = index_path.read_text()
 
-        index_html = index_html.replace('var slides_to_test = [12];',
+        index_html = index_html.replace('var slides_to_test = ["group15_slide15"];',
                                         'var slides_to_test = ' +
                                         str(slides_lst) + ';')
 
@@ -100,3 +100,15 @@ class MturkHandler(object):
         """
         list_hits = self.client.list_hits()
         print(list_hits)
+        return list_hits
+
+    def delete_hits(self):
+        """
+        Delete all available Hits
+        """
+        list_hits = self.client.list_hits()
+        for hit in list_hits['HITs']:
+            if hit['HITStatus']=='Reviewable':
+                self.client.delete_hit(HITId=hit['HITId'])
+
+

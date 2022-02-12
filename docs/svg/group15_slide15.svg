@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="720.0" version="1.1" width="1280.0">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#ff0000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,520.3895013123359,170.76188976377952)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.00010498687664041995 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.00010498687664041995 L 0.00010498687664041995 0.0002099737532808399 Z" fill="#ffffff" stroke="#ff3300" stroke-width="3" transform="matrix(1.753247220297321e-11,286327.0,-184727.49999999997,1.1311297079474633e-11,665.3592125984251,188.70125984251973)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M513.5 651.5 532.5 681.5 513.5 711.5 494.5 681.5Z" stroke="#41719C" stroke-width="3" fill="#FF0000">
+      <animateMotion dur="5s" fill="freeze" path="M0 0C121.16 0 242.321 -45.8611 242.321 -91.7222 242.321 -137.583 191.921 -183.444 141.52 -183.444"/>
+    </path>
+    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+  </svg>
+</svg>

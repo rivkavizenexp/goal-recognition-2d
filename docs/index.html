@@ -49,7 +49,7 @@
     var turk_info = jsPsych.turk.turkInfo();
     var is_preview = turk_info.previewMode;
 
-    const num_pictures = 15;
+    const num_pictures = 20;
     const initial_delay = 5;
     const move_time = 30;
 
@@ -74,7 +74,7 @@
     if (!is_preview) {
         add_questions();
 
-        var slides_to_test = [12];
+        var slides_to_test = ["group15_slide15"];
 
         for (var i = 0; i < slides_to_test.length; i++) {
             run_test(false, slides_to_test[i]);
@@ -102,10 +102,11 @@
     function run_test(is_example, index) {
         var sort_trial = {
             type: 'free-sort',
-            stim_path: host_url + "svg/slide"+index+".svg",
+            stim_path: host_url +"docs/svg/"+index+".svg", //"svg/slide"+index+".svg",//TODO change
             stim_id: "svg-" + index,
             prompt: "<p>Click and drag the image below to where you think it should be.</p>",
             button_label: "I'm done, take me to next image",
+            min_time:5000
         };
 
         timeline.push(sort_trial);

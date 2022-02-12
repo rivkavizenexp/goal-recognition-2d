@@ -45,8 +45,19 @@ def parse_arguments():
                                                    "mainly creating HITs")
     write_mturk.add_argument('-t', '--title', type=str, required=True,
                              help="Title of the HIT")
+        
     write_mturk.add_argument('-c', '--choose', type=str, required=False,
                              help="Choose a list of slides to add to HIT")
+
+    create_mturk = mturk_sub.add_parser('create', help='create -h',
+                                       description="Creates all hits "
+                                                   "and uploads them to MechanicalTurk")
+    create_mturk.add_argument('-t', '--title', type=str, required=True,
+                             help="Title of the HIT")
+        
+    delete_mturk = mturk_sub.add_parser('delete', help='delete -h',
+                                      description="Deletes all available Hits from MechanicalTurk")#TODO fix, delete not preformed
+
 
     args = vars(ap.parse_args())
     return args

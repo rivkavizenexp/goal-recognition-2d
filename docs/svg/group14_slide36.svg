@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg width="1280" height="720" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" overflow="hidden">
+<defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+</defs>
+  <svg id="static_1">
+    <defs/>
+    <rect x="417.5" y="157.5" width="352" height="156" stroke="#5B9BD5" stroke-width="1.33333" stroke-miterlimit="8" fill="#5B9BD5"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path d="M545.5 235.5C545.5 208.99 566.99 187.5 593.5 187.5 620.01 187.5 641.5 208.99 641.5 235.5 641.5 262.01 620.01 283.5 593.5 283.5 566.99 283.5 545.5 262.01 545.5 235.5Z" stroke="#5B9BD5" stroke-width="1.33333" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path d="M802.908 235.688 769.119 269.094 768.821 201.209Z" stroke="#5B9BD5" stroke-width="1.33333" stroke-miterlimit="8" fill="#5B9BD5" fill-rule="evenodd"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path d="M1114.92 569.04C1132.69 549.366 1163.04 547.821 1182.72 565.589 1202.39 583.357 1203.94 613.71 1186.17 633.384 1168.4 653.058 1138.05 654.603 1118.37 636.835L1150.55 601.212Z" stroke="#41719C" stroke-width="1.33333" stroke-miterlimit="8" fill="#5B9BD5" fill-rule="evenodd"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+
+  </svg>
+
+</svg>

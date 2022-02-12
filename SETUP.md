@@ -11,7 +11,7 @@ pip install -r requirements.txt
 
 ## Firebase
 Install the firebase CLI for deploying updated SVG files by following
- [this guide](https://firebase.google.com/docs/cli#install_the_firebase_cli)
+ [this guide](https://firebase.google.com/docs/cli#instalnpm l_the_firebase_cli)
 
 ### Deploy
 Open the CLI in a different folder, and copy to it the JsPsych and SVG folders.
