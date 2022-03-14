@@ -5,7 +5,7 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 146.28577427821523 0.0 L 146.28577427821523 171.92860892388452 L 0.0 171.92860892388452 Z" fill="#3cfa3c" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,349.8571128608924,291.5714435695538)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 146.28577427821523 0.0 L 146.28577427821523 171.92860892388452 L 0.0 171.92860892388452 Z" fill="#3cfa3c" stroke="#3cfa3c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,349.8571128608924,291.5714435695538)"/>
   </svg>
   <svg id="static_2">
     <defs/>
@@ -13,7 +13,7 @@
   </svg>
   <svg id="static_3">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 146.28577427821523 0.0 L 146.28577427821523 171.92860892388452 L 0.0 171.92860892388452 Z" fill="#3cfa3c" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,832.0,196.5714435695538)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 146.28577427821523 0.0 L 146.28577427821523 171.92860892388452 L 0.0 171.92860892388452 Z" fill="#3cfa3c" stroke="#3cfa3c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,832.0,196.5714435695538)"/>
   </svg>
   <svg id="static_4">
     <defs/>
@@ -24,7 +24,7 @@
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#3cfa3c" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,463.2285564304462,612.5113910761155)">
+    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#3cfa3c" stroke="#3cfa3c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,463.2285564304462,612.5113910761155)">
       <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 -0.0 L 126.19128608923884 -150.33543307086615"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>

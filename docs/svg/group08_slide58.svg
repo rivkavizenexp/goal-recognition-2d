@@ -5,19 +5,19 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.00010498687664041995 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.00010498687664041995 L 0.00010498687664041995 0.0002099737532808399 Z" fill="#a35fd1" stroke="#41719c" stroke-width="3" transform="matrix(395999.99999999994,0.0,0.0,306323.99999999994,304.0,211.8405249343832)"/>
   </svg>
   <svg id="static_2">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.00010498687664041995 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.00010498687664041995 L 0.00010498687664041995 0.0002099737532808399 Z" fill="#ffc000" stroke="#ffc000" stroke-width="3" transform="matrix(395999.99999999994,0.0,0.0,306323.99999999994,892.8506036745407,211.8405249343832)"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.83868766404199 L 36.4436220472441 0.0 L 72.8872440944882 37.83868766404199 L 36.4436220472441 75.67737532808398 Z" fill="#d41a96" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,305.13112860892386,227.49616797900262)"/>
   </svg>
   <svg id="static_3">
     <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 37.83868766404199 L 36.4436220472441 0.0 L 72.8872440944882 37.83868766404199 L 36.4436220472441 75.67737532808398 Z" fill="#e0d60e" stroke="#e0d60e" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,884.1311286089239,227.49616797900262)"/>
   </svg>
   <svg id="dynamic">
     <defs/>
-      <path class="non-scaling-stroke" d="M387.5 677 429 644.5 470.5 677 429 709.5Z" stroke="#41719C" stroke-width="3" fill="#A35FD1">
-      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 -0.0 L 174.53805774278214 -133.55464566929135"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.83868766404199 L 36.4436220472441 0.0 L 72.8872440944882 37.83868766404199 L 36.4436220472441 75.67737532808398 Z" fill="#d41a96" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,388.2807349081365,640.5612598425197)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 -0.0 L 277.0696062992126 -175.47464566929133"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>

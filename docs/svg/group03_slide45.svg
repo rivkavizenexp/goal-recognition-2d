@@ -5,44 +5,43 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M195.5 198.5 243.5 166.5 291.5 198.5 243.5 230.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,417.3070866141732,327.5460367454068)"/>
   </svg>
   <svg id="static_2">
     <defs/>
-    <path class="non-scaling-stroke" d="M302.5 198.5 350.5 166.5 398.5 198.5 350.5 230.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,417.3070866141732,242.97301837270342)"/>
   </svg>
   <svg id="static_3">
     <defs/>
-    <path class="non-scaling-stroke" d="M409.5 277.5 457.5 245.5 505.5 277.5 457.5 309.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,237.95863517060369,164.9332283464567)"/>
   </svg>
   <svg id="static_4">
     <defs/>
-    <path class="non-scaling-stroke" d="M844.5 197 892.5 164.5 940.5 197 892.5 229.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,417.3070866141732,161.53774278215224)"/>
   </svg>
   <svg id="static_5">
     <defs/>
-    <path class="non-scaling-stroke" d="M957.5 199.5 1005.5 167.5 1053.5 199.5 1005.5 231.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,327.63286089238846,163.8)"/>
   </svg>
   <svg id="static_6">
     <defs/>
-    <path class="non-scaling-stroke" d="M409.5 199.5 457.5 167.5 505.5 199.5 457.5 231.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,738.5399475065617,249.6)"/>
   </svg>
   <svg id="static_7">
     <defs/>
-    <path class="non-scaling-stroke" d="M409.5 356.5 457.5 324.5 505.5 356.5 457.5 388.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,916.9781627296588,164.9332283464567)"/>
   </svg>
   <svg id="static_8">
     <defs/>
-    <path class="non-scaling-stroke" d="M731.5 197 779.5 164.5 827.5 197 779.5 229.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,827.3399475065617,164.9332283464567)"/>
   </svg>
   <svg id="static_9">
     <defs/>
-    <path class="non-scaling-stroke" d="M731.5 277.5 779.5 245.5 827.5 277.5 779.5 309.5Z" fill="#bdd7ee" stroke="#41719c" stroke-width="3" />
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,738.5399475065617,161.53774278215224)"/>
   </svg>
   <svg id="dynamic">
     <defs/>
-      <path class="non-scaling-stroke" d="M592.5 617 640.5 584.5 688.5 617 640.5 649.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE" /> 
-         <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,600.4,578.5400524934383)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>
 </svg>
-

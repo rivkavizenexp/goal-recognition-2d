@@ -5,6 +5,7 @@ venv/
 .aws/credentials
 *.pptx
 .idea
+firebase-adminsdk.json
 
 # Created by https://www.gitignore.io/api/python,jetbrains
 # Edit at https://www.gitignore.io/?templates=python,jetbrains

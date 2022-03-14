@@ -25,7 +25,7 @@
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 19.411653543307086 0.0 L 19.411653543307086 76.21753280839896 L 0.0 76.21753280839896 Z" fill="#ffc000" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,624.4671916010499,592.5374278215223)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 19.411653543307086 0.0 L 19.411653543307086 76.21753280839896 L 0.0 76.21753280839896 Z" fill="#ffc000" stroke="#ffc000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,624.4671916010499,592.5374278215223)"/>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>
 </svg>

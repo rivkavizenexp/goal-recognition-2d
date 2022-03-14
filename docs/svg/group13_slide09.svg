@@ -33,7 +33,7 @@
   </svg>
   <svg id="static_8">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 23.619107611548557 0.0 L 23.619107611548557 96.0 L 0.0 96.0 Z" fill="#ffffff" stroke="#767171" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,752.3808923884515,278.09522309711286)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 23.619107611548557 0.0 L 23.619107611548557 96.0 L 0.0 96.0 Z" fill="#ffffff" stroke="#7f7f7f" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,752.3808923884515,278.09522309711286)"/>
   </svg>
   <svg id="dynamic">
     <defs/>

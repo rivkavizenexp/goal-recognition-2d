@@ -13,14 +13,14 @@
   </svg>
   <svg id="static_3">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#ffc000" stroke="#ff0000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,967.1362729658792,176.76188976377952)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#ffc000" stroke="#ff0000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,967.1362729658792,184.13291338582678)"/>
   </svg>
   <svg id="static_4">
     <defs/>
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#ffc000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,106.0953280839895,295.57805774278216)">
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#ffc000" stroke="#ff0000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,106.0953280839895,295.57805774278216)">
       <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 196.73238845144357 84.44325459317585"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>

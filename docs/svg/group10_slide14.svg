@@ -5,7 +5,7 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 298.1015223097113 L 222.00701999999998 0.0 L 447.0 298.1015223097113 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,418.0,107.89847769028871)"/>
+    <path class="non-scaling-stroke" d="M 0.0 298.1015223097113 L 222.00701999999998 0.0 L 447.0 298.1015223097113 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,418.0,107.89847769028871)"/>
   </svg>
   <svg id="static_2">
     <defs/>
@@ -17,7 +17,7 @@
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0002099737532808399 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.0002099737532808399 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(722197.4999999999,0.0,0.0,481995.0,565.6786351706037,569.4937532808399)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0002099737532808399 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.0002099737532808399 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(722197.4999999999,0.0,0.0,481995.0,565.6786351706037,569.4937532808399)"/>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>
 </svg>

@@ -20,7 +20,6 @@
 
 from math import sqrt, sin, cos, pi as PI
 import os
-# from turtle import Shape
 
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
@@ -32,7 +31,6 @@ import svgwrite
 
 import numpy as np
 
-import re
 #===============================================================================
 
 from drawml.formula import Geometry, radians
@@ -352,7 +350,7 @@ class SvgExtract(object):
         self._slides = self._ppt.slides
         self._slide_size = [self._ppt.slide_width, self._ppt.slide_height]
 
-        self._group = [int(s) for s in args.powerpoint.split() if s.isdigit()][0]
+        self._group = [int(s) for s in powerpoint.split() if s.isdigit()][0]
 
 
     def slide_to_svg(self, slide_number):
@@ -364,12 +362,24 @@ class SvgExtract(object):
         for n in range(1, len(self._slides)+1):
             self.slide_to_svg(n)
 
+    
 #===============================================================================
 #
+
+def all_slides_to_svg(input_dir,output_dir):
+    files_list = sorted([os.path.join(input_dir,file) for file in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir,file)) and file.endswith('.pptx')])
+    for file in files_list:
+        svg_extract = SvgExtract(file,output_dir)
+        svg_extract.slides_to_svg()
+
+
+
 if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Extract geometries from Powerpoint slides.')
+
+    
     parser.add_argument('--version', action='version', version='0.2.1')
     parser.add_argument('--debug-xml', action='store_true',
                         help="save a slide's DrawML for debugging")
@@ -377,20 +387,23 @@ if __name__ == '__main__':
                         help='only process this slide number (1-origin)')
     parser.add_argument('output_dir', metavar='OUTPUT_DIRECTORY',
                         help='directory in which to save geometries')
-    parser.add_argument('powerpoint', metavar='POWERPOINT_FILE',
-                        help='the name of a Powerpoint file')
-    
+    # parser.add_argument('powerpoint', metavar='POWERPOINT_FILE',
+    #                     help='the name of a Powerpoint file')
+    parser.add_argument('input_dir', metavar='INPUT_DIRECTORY',
+                        help='directory from which to get geometries')
 
 
     args = parser.parse_args()
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
 
+    all_slides_to_svg(args.input_dir,args.output_dir)
 
-    svg_extract = SvgExtract(args.powerpoint,args.output_dir)
-    if args.slide is None:
-        svg_extract.slides_to_svg()
-    else:
-        svg_extract.slide_to_svg(args.slide)
+
+    # svg_extract = SvgExtract(args.powerpoint,args.output_dir)
+    # if args.slide is None:
+    #     svg_extract.slides_to_svg()
+    # else:
+    #     svg_extract.slide_to_svg(args.slide)
 
 #===============================================================================

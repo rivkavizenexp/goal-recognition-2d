@@ -131,3 +131,37 @@
 .draggable {
   cursor: move;
 }
+
+
+/* borrowing Bootstrap style for btn elements, but combining styles a bit */
+.jspsych-done-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px;
+  font-size: 25px;
+  font-weight: 400;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  cursor: pointer;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.jspsych-done-btn:hover {
+  background-color: #55b155;
+  border-color: #4cae4c;
+}
+
+.jspsych-done-btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  border-color: #ccc;
+  cursor: not-allowed;
+}

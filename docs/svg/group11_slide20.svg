@@ -16,7 +16,7 @@
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M355.5 670.5 397.5 638.5 439.5 670.5 397.5 702.5Z" stroke="#41719C" stroke-width="3" fill="#A35FD1">
+    <path class="non-scaling-stroke" d="M 0.0 0.00010498687664041995 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.00010498687664041995 L 0.00010498687664041995 0.0002099737532808399 Z" fill="#a35fd1" stroke="#41719c" stroke-width="3" transform="matrix(395999.99999999994,0.0,0.0,306323.99999999994,355.4251968503937,638.0329658792651)">
       <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 -0.0 L 170.36619422572178 -124.0109186351706"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>

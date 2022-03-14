@@ -53,7 +53,7 @@
   <svg id="dynamic">
     <defs/>
     <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#0070c0" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,495.635905511811,570.9525459317586)">
-      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 218.49753280839894 0.0"/>
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 218.48818897637796 0.0"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>

@@ -54,7 +54,14 @@ def parse_arguments():
                                                    "and uploads them to MechanicalTurk")
     create_mturk.add_argument('-t', '--title', type=str, required=True,
                              help="Title of the HIT")
-        
+    create_mturk.add_argument('-d', '--dir', type=str, required=False,
+                             help="SVGs directory")
+    create_mturk.add_argument('-n', '--num', type=int, required=False,
+                             help="number of slides per HIT")
+    create_mturk.add_argument('-l', '--lifetime', type=int, required=False,
+                             help="lifetime for the HIT in seconds")
+
+
     delete_mturk = mturk_sub.add_parser('delete', help='delete -h',
                                       description="Deletes all available Hits from MechanicalTurk")#TODO fix, delete not preformed
 

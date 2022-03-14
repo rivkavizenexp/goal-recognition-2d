@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>My experiment</title>
     <script src="https://goal-recognition.web.app/jsPsych/jspsych.js"></script>
@@ -7,6 +7,8 @@
     <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-free-sort.js"></script>
     <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-html-button-response.js"></script>
     <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="https://goal-recognition.web.app/jsPsych/plugins/jspsych-survey-html-form.js"></script>
+
     <link href="https://goal-recognition.web.app/jsPsych/css/jspsych.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
@@ -53,66 +55,122 @@
     const initial_delay = 5;
     const move_time = 30;
 
-    /* define welcome message trial */
-    var welcome = {
-        type: "instructions",
-        pages: ["<p>In the next experiment you will see " + num_pictures +
-        " different pictures, one after the other</p>" +
-        "<p>Each picture will contain several objects. </p>" +
-        "<p>One of the objects will be flashing</p>",
-        "<p>" + initial_delay + " seconds after the picture will be presented," +
-        " you will be asked to move the flashing object to a position in " +
-        "the picture which is most suitable place for you.</p>" +
-        "<p>You will have " + move_time + " seconds to move the object." +
-        " When the time will be expired, you will be asked to move to the next picture.</p>" +
-        "<p>Bonus will be added to the payment if all flashing objects will be moved.</p>"],
-        show_clickable_nav: true,
-        show_page_number: true
-    };
-    timeline.push(welcome);
+    var slides_to_test = ['group01_slide15', 'group02_slide37', 'group03_slide45', 'group04_slide03', 'group05_slide01', 'group06_slide12', 'group07_slide24', 'group08_slide74', 'group09_slide13', 'group10_slide06', 'group11_slide28', 'group12_slide23', 'group13_slide11', 'group14_slide14', 'group15_slide39', 'group05_slide32', 'group14_slide09', 'group05_slide13', 'group06_slide09', 'group08_slide15'];
 
-    if (!is_preview) {
-        add_questions();
+    if (!turk_info.outsideTurk){
+        var worker_id = turk_info.workerId;
 
-        var slides_to_test = ['group01_slide15', 'group02_slide37', 'group03_slide45', 'group04_slide03', 'group05_slide01', 'group06_slide12', 'group07_slide24', 'group08_slide74', 'group09_slide13', 'group10_slide06', 'group11_slide28', 'group12_slide23', 'group13_slide11', 'group14_slide14', 'group15_slide39', 'group05_slide32', 'group14_slide09', 'group05_slide13', 'group06_slide09', 'group08_slide15'];
-
-        for (var i = 0; i < slides_to_test.length; i++) {
-            run_test(false, slides_to_test[i]);
+        // limit assighnments per worker
+        if (!is_preview){
+            const dbRef = database.ref()
+            dbRef.child("workers").child(worker_id).get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    //worker has alredy taken this assignment
+                    disable_test()
+                } else {
+                    //worker hasn't taken this assignment yet
+                    create_test()
+                }
+                start_experiment()
+              }).catch((error) => {
+                    console.error(error);
+              });
+    
+        }else{
+            create_test()
+            start_experiment()
         }
+    }else{
+        create_test()
+        start_experiment()
+    }
+    
+    function start_experiment(){
+        /* start the experiment */
+        jsPsych.init({
+            timeline: timeline,
+            on_finish: function(data) {
+                var survey_data = JSON.parse(data.filter({"trial_type":"survey-html-form"}).select("responses").values[0]);
+                var exp_data = data.last(slides_to_test.length+1).first(slides_to_test.length).values();
+                send_trial_data(exp_data, turk_info,survey_data);
+            },
+            show_progress_bar: false
+        });
 
-        var goodbye = {
-            type: "html-button-response",
-            stimulus: "Thank you for participating! ",
-            choices: ['GoodBye!']
-        };
     }
 
-    timeline.push(goodbye);
+    function disable_test(){
+        var disable = {
+            type: "instructions",
+            pages: ["<p>You have already completed the maximum number of HITs allowed by this requester."+
+                 "Please click 'Return HIT' to avoid any impact on your approval rating.</p>"],
+            show_clickable_nav: false,
+            show_page_number: true
+        };
+        timeline.push(disable);    
+    }
 
-    /* start the experiment */
-    jsPsych.init({
-        timeline: timeline,
-        on_finish: function(data) {
-            var exp_data = data.last(slides_to_test.length+1).first(slides_to_test.length).values();
-            send_trial_data(exp_data, turk_info);
-        },
-        show_progress_bar: false
-    });
-    
+    function create_test(){
+        /* define welcome message trial */
+        var welcome = {
+            type: "instructions",
+            pages: ["<p>In this experiment you will see " + num_pictures +
+            " different pictures, one after the other</p>" +
+            "<p>Each picture will contain several objects. </p>" +
+            "<p>One of the objects will be flashing</p>",
+            "<p>" + initial_delay + " seconds after the picture will be presented," +
+            " you will be asked to move the flashing object to a position in " +
+            "the picture which is most suitable place for you.</p>" +
+            "<p>You will have " + move_time + " seconds to move the object." +
+            " When the time will expire, you will be asked to move to the next picture.</p>" +
+            "<p>Bonus will be added to the payment if all flashing objects will be moved.</p>",
+            "<p>In the next 2 pages, you will see demo of object movment.</p>"],
+            show_clickable_nav: true,
+            show_page_number: true
+        };
+        timeline.push(welcome);
+        add_preview();
+        if (!is_preview) {
+            add_questions();
+            add_form()
+
+            for (var i = 0; i < slides_to_test.length; i++) {
+                run_test(false, slides_to_test[i]);
+            }
+
+            var goodbye = {
+                type: "html-button-response",
+                stimulus: "Thank you for participating! ",
+                choices: ['GoodBye!']
+            };
+            timeline.push(goodbye);
+
+        }else{
+            var accept = {
+                type: "instructions",
+                pages: ["<p>Click Accept to start...</p>"],
+                show_clickable_nav: false,
+                show_page_number: true
+            };
+            timeline.push(accept);
+        }
+    }
+
     function run_test(is_example, index) {
         var sort_trial = {
             type: 'free-sort',
-            stim_path: host_url +"docs/svg/"+index+".svg", //"svg/slide"+index+".svg",//TODO change
+            stim_path: host_url +"docs/svg/"+index+".svg",
             stim_id: "svg-" + index,
             prompt: "<p>Click and drag the image below to where you think it should be.</p>",
             button_label: "I'm done, take me to next image",
-            min_time:5000,
+            initial_delay:initial_delay,
+            move_time:move_time
         };
 
         timeline.push(sort_trial);
     }
 
-    function send_trial_data(data, turk_info) {
+    function send_trial_data(data, turk_info,survey_data) {
         var slides_post_data = {};
         var data_array = data;
         var stim_ids = [];
@@ -128,17 +186,34 @@
                 // User is signed in, with this ID
                 var uid = user.uid;
                 var worker_id = uid;
+                var assignment_id = uid;
 
+                console.log(worker_id)
+                
                 if (!turk_info.outsideTurk){
-                    // If running from Mturk, we have the worker ID as well
+                    // If running from Mturk, we have the worker ID and the assignment ID as well
                     worker_id = turk_info.workerId;
+                    assignment_id = turk_info.assignmentId;
                 }
+
+                //remove unnessary data
+                for (let i = 0; i < stim_ids.length; i++) {
+                    delete slides_post_data[stim_ids[i]]['internal_node_id'];
+                    delete slides_post_data[stim_ids[i]]['trial_index'];
+                    delete slides_post_data[stim_ids[i]]['trial_type'];
+                }
+
+                //add some nessary data
+                survey_data['AssignmentId']=assignment_id
+                survey_data['hit'] = slides_post_data
+
+                //create update package
                 console.log('uid: ' + uid);
                 var updates = {};
-                updates['/workers/' + worker_id + '/' + uid] = slides_post_data;
+                updates['/workers/' + worker_id + '/' + uid] = survey_data;
                 for (let i = 0; i < stim_ids.length; i++) {
-                    updates['/slides/' + stim_ids[i] + '/' + worker_id + '/' + uid] =
-                        slides_post_data[stim_ids[i]];
+                    slides_post_data[stim_ids[i]]['AssignmentId']=assignment_id
+                    updates['/slides/' + stim_ids[i] + '/' + worker_id + '/' + uid] =slides_post_data[stim_ids[i]];
                 }
 
                 return database.ref().update(updates, function(error) {
@@ -207,7 +282,7 @@
 
         var quest3 = {
             type: 'html-button-response',
-            stimulus: '<p>3. How much time after picture is presented you will be able to move the flashing object?</p>',
+            stimulus: '<p>3. How much time will the object flash before you will be able to move it?</p>',
             choices: [initial_delay, 0, initial_delay + 7],
             prompt: "<p>Choose the correct answer</p>"
             };
@@ -249,5 +324,64 @@
         timeline.push(loop4);
     }
 
+    function add_preview(){
+        var preview1 = {
+            type: 'free-sort',
+            stim_path: host_url +"docs/preview_slide1.svg",
+            stim_id: "preview_1",
+            prompt: "<p>Preview:</p>",
+            button_label: "next",
+            initial_delay:8,
+            move_time:0,
+            auto_continue:true
+        };
+        var preview2 = {
+            type: 'free-sort',
+            stim_path: host_url +"docs/preview_slide2.svg",
+            stim_id: "preview_2",
+            prompt: "<p>Preview:</p>",
+            button_label: "next",
+            initial_delay:10,
+            move_time:0,
+            auto_continue:true
+        };
+        var preview3 = {
+            type: 'free-sort',
+            stim_path: host_url +"docs/preview_slide3.svg",
+            stim_id: "preview_3",
+            prompt: "<p>Preview:</p>",
+            button_label: "next",
+            initial_delay:10,
+            move_time:0,
+            auto_continue:true
+        };
+
+        //timeline.push(preview1);
+        timeline.push(preview2);
+        timeline.push(preview3);
+
+    }
+
+    function add_form(){
+          var trial = {
+            type: "survey-html-form",
+            preamble: '<p>answer these questions:</p>',
+            html: '<p>'+
+                'Age:<input name="age" type="number" required/></br><br/>'+
+                'Genger:<select name="gender" id="gender" required>'+
+                    '<option disabled selected value> -- select an option -- </option>'+
+                    '<option value="male">Male</option>'+
+                    '<option value="female">Female</option>'+
+                    '<option value="other">Other</option>'+
+                '</select><br/><br/>'+
+                'Strong Hand:<select name="hand" id="hand" required>'+
+                    '<option disabled selected value> -- select an option -- </option>'+
+                    '<option value="left">Left</option>'+
+                    '<option value="right">Right</option>'+
+                    '<option value="other">Other</option>'+
+                '</select><br/><br/>',
+          };
+        timeline.push(trial);
+    }
 </script>
 </html>

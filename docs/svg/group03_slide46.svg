@@ -5,43 +5,43 @@
   </defs>
   <svg id="static_1">
     <defs/>
-<path class="non-scaling-stroke" d="M942.542 405.196 976.962 451.602 947.136 501.086 912.716 454.68Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>  </svg>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,237.95863517060369,339.5048818897638)"/>
+  </svg>
   <svg id="static_2">
     <defs/>
-<path class="non-scaling-stroke" d="M779.5 295.5 811.5 343.5 779.5 391.5 747.5 343.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,237.95863517060369,251.94603674540681)"/>
   </svg>
   <svg id="static_3">
     <defs/>
-<path class="non-scaling-stroke" d="M243.605 532.066 278.993 577.739 250.214 627.839 214.826 582.167Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,237.95863517060369,164.9332283464567)"/>
   </svg>
   <svg id="static_4">
     <defs/>
-<path class="non-scaling-stroke" d="M410.268 295.481 444.935 341.703 415.373 391.345 380.706 345.123Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,417.3070866141732,161.53774278215224)"/>
   </svg>
   <svg id="static_5">
     <defs/>
-<path class="non-scaling-stroke" d="M942.543 293.999 976.937 340.425 947.083 389.892 912.689 343.467Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,327.63286089238846,163.8)"/>
   </svg>
   <svg id="static_6">
     <defs/>
-<path class="non-scaling-stroke" d="M860 294.5 892.5 342.5 860 390.5 827.5 342.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,918.7181102362205,251.94603674540681)"/>
   </svg>
   <svg id="static_7">
     <defs/>
-<path class="non-scaling-stroke" d="M243.5 413.5 275.5 461.5 243.5 509.5 211.5 461.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,916.9781627296588,164.9332283464567)"/>
   </svg>
   <svg id="static_8">
     <defs/>
-<path class="non-scaling-stroke" d="M327 297.5 359.5 345.5 327 393.5 294.5 345.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,827.3399475065617,164.9332283464567)"/>
   </svg>
   <svg id="static_9">
     <defs/>
-<path class="non-scaling-stroke" d="M243.5 297.5 275.5 345.5 243.5 393.5 211.5 345.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,738.5399475065617,161.53774278215224)"/>
   </svg>
   <svg id="dynamic">
     <defs/>
-<path class="non-scaling-stroke" d="M640.5 568.5 672.5 616.5 640.5 664.5 608.5 616.5Z" stroke="#41719C" stroke-width="3" fill="#BDD7EE"/>
+    <path class="non-scaling-stroke" d="M 0.0 37.8 L 39.6 0.0 L 79.2 37.8 L 39.6 75.6 Z" fill="#6c96c4" stroke="#6c96c4" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,600.4,578.5400524934383)"/>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>
 </svg>
-

@@ -5,20 +5,20 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#ff0000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,520.3895013123359,170.76188976377952)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#ff0000" stroke="#ff0000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,520.3895013123359,170.76188976377952)"/>
   </svg>
   <svg id="static_2">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.00010498687664041995 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.00010498687664041995 L 0.00010498687664041995 0.0002099737532808399 Z" fill="#ffffff" stroke="#ff3300" stroke-width="3" transform="matrix(1.753247220297321e-11,286327.0,-184727.49999999997,1.1311297079474633e-11,665.3592125984251,188.70125984251973)"/>
+    <path class="non-scaling-stroke" d="M 0.0 30.060629921259842 L 19.8 0.0 L 39.6 30.060629921259842 L 19.8 60.121259842519684 Z" fill="#f9fbfd" stroke="#ff0000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,620.2,188.70120734908136)"/>
   </svg>
   <svg id="static_3">
     <defs/>
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M513.5 651.5 532.5 681.5 513.5 711.5 494.5 681.5Z" stroke="#41719C" stroke-width="3" fill="#FF0000">
-      <animateMotion dur="5s" fill="freeze" path="M0 0C121.16 0 242.321 -45.8611 242.321 -91.7222 242.321 -137.583 191.921 -183.444 141.52 -183.444"/>
+    <path class="non-scaling-stroke" d="M 0.0 30.060629921259842 L 19.8 0.0 L 39.6 30.060629921259842 L 19.8 60.121259842519684 Z" fill="#ff0000" stroke="#ff0000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,660.9562204724409,650.7550656167979)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 57.02971128608924 2.8514435695538225 L 79.84167979002625 1.900997375328103 L 93.14855643044619 -7.603989501312327 L 108.35653543307086 -28.514855643044598 L 128.31685039370078 -73.18813648293963 L 135.92083989501313 -116.91086614173227 L 141.62383202099738 -151.12871391076115 L 142.5742782152231 -187.2475590551181"/>
     </path>
-    <animate attributeName="opacity" dur="1s" repeatCount="3" values="1;0;1"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>
 </svg>

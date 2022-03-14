@@ -5,19 +5,19 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#afabab" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,507.38950131233594,146.76188976377952)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#afabab" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,475.38950131233594,145.76188976377952)"/>
   </svg>
   <svg id="static_2">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.00010498687664041995 L 0.00010498687664041995 0.0 L 0.0002099737532808399 0.00010498687664041995 L 0.00010498687664041995 0.0002099737532808399 Z" fill="#ffffff" stroke="#a6a6a6" stroke-width="3" transform="matrix(286327.0,0.0,0.0,184727.49999999997,602.9046719160104,175.36787401574804)"/>
+    <path class="non-scaling-stroke" d="M 0.0 18.189448818897638 L 31.043254593175853 0.0 L 62.086509186351705 18.189448818897638 L 31.043254593175853 36.378897637795276 Z" fill="#f9fbfd" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,569.9219947506562,175.57238845144357)"/>
   </svg>
   <svg id="static_3">
     <defs/>
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M602.5 330.5 632.5 311.5 662.5 330.5 632.5 349.5Z" stroke="#41719C" stroke-width="3" fill="#A6A6A6">
-      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 0.0 145.26078740157482"/>
+    <path class="non-scaling-stroke" d="M 0.0 18.189448818897638 L 31.043254593175853 0.0 L 62.086509186351705 18.189448818897638 L 31.043254593175853 36.378897637795276 Z" fill="#afabab" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,569.9219947506562,349.19149606299214)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 0.0 224.44094488188978"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>

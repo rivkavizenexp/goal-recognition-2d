@@ -13,6 +13,11 @@ pip install -r requirements.txt
 Install the firebase CLI for deploying updated SVG files by following
  [this guide](https://firebase.google.com/docs/cli#instalnpm l_the_firebase_cli)
 
+ Generate a private key file for your firebase account:
+ - In the Firebase console, open Settings > Service Accounts.
+ - Click Generate New Private Key, then confirm by clicking Generate Key.
+ - Securely store the JSON file containing the key as firebase_adminsdk.json.
+
 ### Deploy
 Open the CLI in a different folder, and copy to it the JsPsych and SVG folders.
 Follow [this guide](https://firebase.google.com/docs/hosting/quickstart) 

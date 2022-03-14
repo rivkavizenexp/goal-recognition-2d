@@ -5,15 +5,15 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 129.64944881889764 0.0 L 129.64944881889764 133.60839895013123 L 0.0 133.60839895013123 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,106.08230971128609,110.84514435695539)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 129.64944881889764 0.0 L 129.64944881889764 133.60839895013123 L 0.0 133.60839895013123 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,106.08230971128609,110.84514435695539)"/>
   </svg>
   <svg id="static_2">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 129.64944881889764 0.0 L 129.64944881889764 133.60839895013123 L 0.0 133.60839895013123 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,188.3917060367454,196.45354330708662)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 129.64944881889764 0.0 L 129.64944881889764 133.60839895013123 L 0.0 133.60839895013123 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,188.3917060367454,196.45354330708662)"/>
   </svg>
   <svg id="static_3">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 129.64944881889764 0.0 L 129.64944881889764 133.60839895013123 L 0.0 133.60839895013123 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,270.0411548556431,282.0619422572178)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 129.64944881889764 0.0 L 129.64944881889764 133.60839895013123 L 0.0 133.60839895013123 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,270.0411548556431,282.0619422572178)"/>
   </svg>
   <svg id="static_4">
     <defs/>
@@ -37,11 +37,11 @@
   </svg>
   <svg id="static_9">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 47.17564304461942 0.0 L 47.17564304461942 45.5254593175853 L 0.0 45.5254593175853 Z" fill="#ffffff" stroke="#c967bb" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,976.3917060367454,183.96913385826772)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 47.17564304461942 0.0 L 47.17564304461942 45.5254593175853 L 0.0 45.5254593175853 Z" fill="#ffffff" stroke="#be72b1" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,976.3917060367454,183.96913385826772)"/>
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 47.17564304461942 0.0 L 47.17564304461942 45.5254593175853 L 0.0 45.5254593175853 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,630.1027821522309,617.2472440944882)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 47.17564304461942 0.0 L 47.17564304461942 45.5254593175853 L 0.0 45.5254593175853 Z" fill="#5b9bd5" stroke="#5b9bd5" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,630.1027821522309,617.2472440944882)"/>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>
 </svg>

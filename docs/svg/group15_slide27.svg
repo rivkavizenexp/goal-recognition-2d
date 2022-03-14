@@ -5,19 +5,19 @@
   </defs>
   <svg id="static_1">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 408.2263517060367 0.0 L 408.2263517060367 231.7330183727034 L 0.0 231.7330183727034 Z" fill="#a35fd1" stroke="#ffffff" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,435.8868241469816,149.1589501312336)"/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 408.2263517060367 0.0 L 408.2263517060367 231.7330183727034 L 0.0 231.7330183727034 Z" fill="#a35fd1" stroke="#a35fd1" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,435.8868241469816,149.1589501312336)"/>
   </svg>
   <svg id="static_2">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#ffffff" stroke="#c967bb" stroke-width="3" transform="matrix(-0.7128766243047461,0.7012894684221844,-0.7012894684221844,-0.7128766243047461,707.8799724508926,377.6240050046726)"/>
+    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#ffffff" stroke="#a35fd1" stroke-width="3" transform="matrix(-0.7128766243047461,0.7012894684221844,-0.7012894684221844,-0.7128766243047461,707.8799724508929,381.4136113038852)"/>
   </svg>
   <svg id="static_3">
     <defs/>
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#a35fd1" stroke="#41719c" stroke-width="3" transform="matrix(-0.7189149191094579,0.6950980787499282,-0.6950980787499282,-0.7189149191094579,1025.3096842647046,645.0421059750527)">
-      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M -0.0 0.0 L -247.50089238845143 5.0171128608923885"/>
+    <path class="non-scaling-stroke" d="M 0.0 96.0 L 0.0 0.0 L 96.0 96.0 Z" fill="#a35fd1" stroke="#a35fd1" stroke-width="3" transform="matrix(-0.7189149191094579,0.6950980787499282,-0.6950980787499282,-0.7189149191094579,1025.3096842647046,645.0421059750527)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M -0.0 0.0 L -247.49606299212599 5.0078740157480315"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
   </svg>

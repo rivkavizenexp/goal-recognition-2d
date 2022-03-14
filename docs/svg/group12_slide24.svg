@@ -28,7 +28,7 @@
   </svg>
   <svg id="dynamic">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#bfbfbf" stroke="#bfbfbf" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,421.3634645669291,195.14929133858269)">
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 62.09511811023622 0.0 L 62.09511811023622 59.42855643044619 L 0.0 59.42855643044619 Z" fill="#bfbfbf" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,421.3634645669291,195.14929133858269)">
       <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 168.2285564304462 1.9354330708661418"/>
     </path>
     <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>

@@ -46,11 +46,24 @@ jsPsych.plugins['free-sort'] = (function() {
         default:  'Continue',
         description: 'The text that appears on the button to continue to the next trial.'
       },
-      min_time: {
+      initial_delay: {
         type: jsPsych.plugins.parameterType.INT,
-        pretty_name: 'Minimum Time',
+        pretty_name: 'Initial delay',
         default:  0,
         description: 'the period to disable the contunue button.'
+      },
+      move_time: {
+        type: jsPsych.plugins.parameterType.INT,
+        pretty_name: 'Time to move the object',
+        default:  0,
+        description: 'the maximum period of the test.'
+      },
+      auto_continue: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Auto continue on timeout',
+        default:  false,
+        description: 'Auto continue on timeout.'
+
       }
 
     }
@@ -66,6 +79,8 @@ jsPsych.plugins['free-sort'] = (function() {
       html += trial.prompt;
     }
 
+    html+="<p id='timer' style='display:none;'></p>"
+
     html += '<div '+
       'id="jspsych-free-sort-arena" '+
       'class="jspsych-free-sort-arena" '+
@@ -77,9 +92,12 @@ jsPsych.plugins['free-sort'] = (function() {
       html += trial.prompt;
     }
 
+    // add times up hidden button
+    html+="<p id='tims_up' style='display:none; color:red;'>Time's up...</p>"
+    
     display_element.innerHTML = html;
     var is_svg_onload_ran = false;
-
+    
     let ajax = new XMLHttpRequest();
     ajax.open("GET", trial.stim_path, true);
     ajax.onload = function(e) {
@@ -99,25 +117,49 @@ jsPsych.plugins['free-sort'] = (function() {
     };
     ajax.send();
 
+    // set Time limit for the test
+    var disable_timeout=null
+    var disable_interval=null;
+    var time_left = trial.move_time+trial.initial_delay;
+    display_element.querySelector("#timer").style.display = "none";
+
+    if(trial.move_time!=0){
+
+      display_element.querySelector("#timer").innerHTML=time_left;
+      disable_interval = setInterval(function(){
+        time_left--;
+        display_element.querySelector("#timer").innerHTML="time left: "+time_left;
+      },1000)
+
+      disable_timeout = setTimeout(function(){
+        clearInterval(disable_interval);
+        let svg_div = display_element.querySelector("#jspsych-free-sort-arena");
+        svg_div.style.display='none'
+        let times_up_txt = display_element.querySelector("#tims_up");
+        times_up_txt.style.display='block'
+      },(trial.initial_delay+trial.move_time)*1000)
+
+
+  
+    }
+
+
     // store initial location data
     var init_locations = [];
 
-    display_element.innerHTML += '<button id="jspsych-free-sort-done-btn" class="jspsych-btn">'+trial.button_label+'</button>';
+    display_element.innerHTML += '<button id="jspsych-free-sort-done-btn" class="jspsych-done-btn">'+trial.button_label+'</button>';
     
-    //disable sort-done button for 5 seconds
+    //disable sort-done button for initial delay
     display_element.querySelector('#jspsych-free-sort-done-btn').disabled=true
-    setTimeout(function(){
-      display_element.querySelector('#jspsych-free-sort-done-btn').disabled=false
-    },trial.min_time)
-    
+    if (trial.auto_continue)
+      display_element.querySelector('#jspsych-free-sort-done-btn').style.display='none'
+
     var moves = [];
     var relative_moves = [];
 
     function onLoadFunc(evt){
       let svgDocument = evt.target;
-      
       svgInit(svgDocument)
-
     }
 
     function svgInit(svgDocument){
@@ -129,10 +171,13 @@ jsPsych.plugins['free-sort'] = (function() {
       var dynamic = svgDocument.getElementById("dynamic");
       for (let element of dynamic.children)
         element.classList.add("static")
-
-
-
+  
       setTimeout(function(){
+        display_element.querySelector("#timer").style.display = "block";
+        display_element.querySelector('#jspsych-free-sort-done-btn').disabled=false
+        if (trial.auto_continue){
+          display_element.querySelector('#jspsych-free-sort-done-btn').click();
+        }else{
           for (let chiled of svg_child_nodes){
             if (chiled.id === "") { continue;}
     
@@ -148,9 +193,10 @@ jsPsych.plugins['free-sort'] = (function() {
           for (let element of dynamic.children)
             element.classList.remove("static")
 
-          
-          makeDraggable(svgDocument);
-      },5000)
+          makeDraggable(svgDocument);    
+        }
+      },trial.initial_delay*1000)
+
     }
 
     function makeDraggable(svg){
@@ -165,13 +211,12 @@ jsPsych.plugins['free-sort'] = (function() {
       svg.addEventListener('touchleave', endDrag);
       svg.addEventListener('touchcancel', endDrag);
 
+
       var dynamic = svg.getElementById("dynamic");
       for (let element of dynamic.children)
         element.classList.add("draggable")
-
-      var rect = dynamic.getBoundingClientRect()
-      var x_init = rect.x;
-      var y_init = rect.x;
+      dynamic.setAttributeNS(null, "x", 0);
+      dynamic.setAttributeNS(null, "y", 0);
 
       function getMousePosition(evt) {
         var CTM = svg.getScreenCTM();
@@ -182,11 +227,29 @@ jsPsych.plugins['free-sort'] = (function() {
         };
       }
 
+      function getDynamicCenter(){
+        var box = dynamic.children[1].getBoundingClientRect()
+        var CTM = svg.getScreenCTM();
+
+        var x_box = box.x + 0.5 * box.width;
+        var y_box = box.y + 0.5 * box.height;
+        return {
+          x:(x_box- CTM.e) / CTM.a,
+          y:(y_box- CTM.f) / CTM.d
+        };
+      }
+
+      var center_init=getDynamicCenter()
+      var x_init=center_init.x;
+      var y_init=center_init.y
+
+
       var selectedElement, offset, transform;
       function startDrag(evt) {
         if (evt.target.classList.contains('draggable')) {
           selectedElement = evt.target;
           offset = getMousePosition(evt);
+
           // Make sure the first transform on the element is a translate transform
           var transforms = selectedElement.transform.baseVal;
           if (transforms.length === 0 || transforms.getItem(0).type !== SVGTransform.SVG_TRANSFORM_TRANSLATE) {
@@ -199,6 +262,9 @@ jsPsych.plugins['free-sort'] = (function() {
           transform = transforms.getItem(0);
           offset.x -= transform.matrix.e;
           offset.y -= transform.matrix.f;
+
+          offset.x -= dynamic.getAttributeNS(null,"x");
+          offset.y -= dynamic.getAttributeNS(null,"y");
         }
       }
 
@@ -206,17 +272,25 @@ jsPsych.plugins['free-sort'] = (function() {
         if (selectedElement) {
           evt.preventDefault();
           var coord = getMousePosition(evt);
-          transform.setTranslate(coord.x - offset.x, coord.y - offset.y);
+
+          // transform.setTranslate(coord.x - offset.x, coord.y - offset.y);
+          dynamic.setAttributeNS(null, "x", coord.x - offset.x);
+          dynamic.setAttributeNS(null, "y", coord.y - offset.y);
+
+          var center_coord = getDynamicCenter()
+          var time_delta = performance.now()-start_time
 
           moves.push({
             "src": "dynamic",
-            "x": coord.x,
-            "y": coord.y
+            "x": center_coord.x,
+            "y": center_coord.y,
+            "time":time_delta
           });
           relative_moves.push({
             "src": "dynamic",
-            "x": coord.x - x_init,
-            "y": coord.y - y_init
+            "x": center_coord.x - x_init,
+            "y": center_coord.y - y_init,
+            "time":time_delta
           })
 
         }
@@ -276,6 +350,10 @@ jsPsych.plugins['free-sort'] = (function() {
     // }
 
     display_element.querySelector('#jspsych-free-sort-done-btn').addEventListener('click', function(){
+      if(disable_timeout!=null)
+        clearTimeout(disable_timeout)
+      if(disable_interval!=null)
+        clearInterval(disable_interval);
 
       var end_time = performance.now();
       var rt = end_time - start_time;
@@ -284,21 +362,44 @@ jsPsych.plugins['free-sort'] = (function() {
       var final_locations = [];
       let svg_element = display_element.querySelectorAll('.test-img')[0].firstElementChild;
       let dynamic = svg_element.getElementById("dynamic");
-      let rect = dynamic.getBoundingClientRect();
-      final_locations.push({
-        "src": dynamic.id,
-        "x": rect.x,
-        "y": rect.y
-      });
 
-      var trial_data = {
-        "stim_id": JSON.stringify(trial.stim_id),
-        "init_locations": JSON.stringify(init_locations),
-        "moves": JSON.stringify(moves),
-        "relative moves": JSON.stringify(relative_moves),
-        "final_locations": JSON.stringify(final_locations),
-        "rt": rt
-      };
+      if(dynamic.children.length>1){
+        var box = dynamic.children[1].getBoundingClientRect()
+        var CTM = svg_element.getScreenCTM();
+        var x_box = box.x + 0.5 * box.width;
+        var y_box = box.y + 0.5 * box.height;
+        final_locations.push({
+          "src": dynamic.id,
+          "x":(x_box- CTM.e) / CTM.a,
+          "y":(y_box- CTM.f) / CTM.d
+        });
+
+
+        var trial_data = {
+          "stim_id": trial.stim_id,
+          "init_locations": init_locations,
+          "moves": moves,
+          "relative moves": relative_moves,
+          "final_locations": final_locations,
+          "rt": rt
+        };
+      }
+
+      // let rect = dynamic.getBoundingClientRect();
+      // final_locations.push({
+      //   "src": dynamic.id,
+      //   "x": rect.x,
+      //   "y": rect.y
+      // });
+
+      // var trial_data = {
+      //   "stim_id": JSON.stringify(trial.stim_id),
+      //   "init_locations": JSON.stringify(init_locations),
+      //   "moves": JSON.stringify(moves),
+      //   "relative moves": JSON.stringify(relative_moves),
+      //   "final_locations": JSON.stringify(final_locations),
+      //   "rt": rt
+      // };
 
       // advance to next part
       display_element.innerHTML = '';
