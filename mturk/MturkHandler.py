@@ -51,7 +51,7 @@ class MturkHandler(object):
             }
         envelope = Element("HTMLQuestion", nsmap=NSMAP)
 
-        index_path = Path.cwd() / 'docs' / 'index.html'
+        index_path = Path.cwd() / 'public' / 'docs' / 'index.html'
         index_html = index_path.read_text()
 
         index_html = index_html.replace('var slides_to_test = ["group15_slide15"];',
@@ -82,7 +82,7 @@ class MturkHandler(object):
         return qual_response['QualificationType']['QualificationTypeId']
 
 
-    def create_hit(self, title, slides_lst,max_assignments=10,lifetime=600,duration=600,reward=0.11,
+    def create_hit(self, title, slides_lst,max_assignments=10,lifetime=1800,duration=1800,reward=0.11,
                     candidate_min_hit_approved=0,candidate_min_hit_approved_percent=0):
         """
         Creates a HIT and sends it to Mturk
@@ -97,6 +97,7 @@ class MturkHandler(object):
         """
         test_question = self.create_question_xml(slides_lst)
 
+        #create qualification requirements
         qualification_requirements = [
             {'QualificationTypeId': '000000000000000000L0',#percent hits approved
                 'Comparator': 'GreaterThanOrEqualTo',
@@ -109,8 +110,13 @@ class MturkHandler(object):
                 'ActionsGuarded': 'Accept'
             },
             {'QualificationTypeId':'31U92A8DCXY0NOFRQD50GDEX71NFXK',#color blindness qualification
-                                   'Comparator': 'EqualTo',
-                                   'IntegerValues':[100]},
+                'Comparator': 'EqualTo',
+                'IntegerValues':[100]
+            },
+            {'QualificationTypeId': '00000000000000000071',#US only
+                'Comparator': 'In',#'EqualTo',
+                'LocaleValues': [{ 'Country': "US" },{ 'Country': "IL" }]
+            },
         ]
 
 

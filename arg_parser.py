@@ -26,6 +26,9 @@ def parse_subccmd(sub_cmd, arguments):
         parse_update(arguments)
     elif sub_cmd == 'mturk':
         parse_mturk(arguments)
+    elif sub_cmd == 'firebase':
+        parse_firebase(arguments)
+
 
 def parse_update(args):
     file_path = args['file_path']
@@ -54,9 +57,9 @@ def parse_mturk(args):
 
     elif sub_turk_cmd == 'create':
         title = args['title']
-        svg_dir = args.get('svg_dir','docs/svg')
-        slides_per_hit = args.get('slides_per_hit',20)
-        limit_hits = args.get('limit_hits',float('inf'))
+        svg_dir = args.get('svg_dir','public/docs/svg')
+        slides_per_hit = args.get('num',20)
+        limit_hits = float(args.get('limit',float('inf')))
         lifetime = args.get('lifetime',600)
         
         mturk_create_all_hits(title=title,
@@ -69,6 +72,21 @@ def parse_mturk(args):
     elif sub_turk_cmd =='review':
         mturk_revirew_all_assignments()
 
+def parse_firebase(args):
+    sub_cmd = args['firebasecmd']
+
+    if sub_cmd == 'read':
+        print(firebase_read(args['path']))
+    
+    if sub_cmd == 'read-slides':
+        df = firebase_read_slides()
+        if args['out']:
+            df.to_csv(args['out'])
+        else:
+            print(df)
+
+        
+
 def mturk_read():
     mturk_handler = MturkHandler()
     print(mturk_handler.read_hits())
@@ -77,7 +95,7 @@ def mturk_write(title, slides_lst):
     mturk_handler = MturkHandler()
     mturk_handler.create_hit(title, slides_lst)
 
-def mturk_review_assignment(assignment,mturk=None):
+def mturk_review_assignment(assignment,mturk=None,bonus_amount=0.6):
     if assignment['AssignmentStatus']!='Submitted':
         print('assignment alredy reviewed')
         return
@@ -89,8 +107,9 @@ def mturk_review_assignment(assignment,mturk=None):
     assignment_data=next(iter(firebase_read(path=f"/workers/{assignment['WorkerId']}").values()),{})
     hit = pd.DataFrame(assignment_data.get('hit',{})).T
     if len(hit)==0:
-        print("ERROR: hit hot found!!")
+        print("hit hot found in database (probably due to validation error), rejecting assignment")
         #TODO hangle error
+        mturk.reject_assignment(assignment['AssignmentId'])
         return
 
     # handle hit, approve or reject, send bonus if needed
@@ -103,7 +122,7 @@ def mturk_review_assignment(assignment,mturk=None):
         mturk.approve_assignment(assignment['AssignmentId'])
         if percent_answerd==1:
             print(f"assignment {assignment['AssignmentId']} got a bonus")
-            mturk.send_bonus(assignment['WorkerId'],assignment['AssignmentId'],0.1,"You have answerd all questions, and earned a Bonus.")
+            mturk.send_bonus(assignment['WorkerId'],assignment['AssignmentId'],bonus_amount,"You have answerd all questions, and earned a Bonus.")
     else:
         print(f"assignment {assignment['AssignmentId']} rejected")
         mturk.reject_assignment(assignment['AssignmentId'],"You havn't answerd enough questions.")
@@ -146,7 +165,7 @@ def mturk_delete_all_hits():
                 print("hit",hit_id,'deleted')
         hits = mturk.read_hits()['HITs']
     
-def mturk_create_all_hits(title,svg_dir='docs/svg',slides_per_hit=20,limit_hits=float('inf'),lifetime=600):
+def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limit_hits=float('inf'),lifetime=600):
     ''' 
     Create all required hits
     '''
@@ -156,7 +175,7 @@ def mturk_create_all_hits(title,svg_dir='docs/svg',slides_per_hit=20,limit_hits=
     num_hit = max([len(i) for i in file_groups])
     mturk_handler = MturkHandler()
 
-    for idx in range(min(num_hit,limit_hits)):
+    for idx in range(int(min(num_hit,limit_hits))):
         hit=[]
         for i in range(slides_per_hit):
             if i<len(file_groups):
@@ -174,16 +193,16 @@ def mturk_create_all_hits(title,svg_dir='docs/svg',slides_per_hit=20,limit_hits=
         random.shuffle(hit)
         mturk_handler.create_hit(title, hit,lifetime=lifetime)
 
-def firebase_read_all():
+def firebase_read_slides():
     slides = firebase_read('/slides/')
     data_list=[]
 
     for slide_id,slide in slides.items():
         for worker_id,data in slide.items():
-            for assignment_id,hit in data.items():
+            for user_id,hit in data.items():
                 frame = {"slide_id":slide_id,
                         "worker_id":worker_id,
-                        "assignment_id":assignment_id,
+                        "user_id":user_id,
                         **hit}
                 data_list.append(frame)
     return pd.DataFrame(data_list)

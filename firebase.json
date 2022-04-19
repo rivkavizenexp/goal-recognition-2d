@@ -1,18 +1,21 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "public/",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-	"headers": [ {
-		// Applies a CORS header for all svg files
-		"source": "**/**/*.@(svg)",
-		"headers": [ {
-		  "key": "Access-Control-Allow-Origin",
-		  "value": "*"
-		} ]
-	}]
+    "headers": [
+      {
+        "source": "**/**/*.@(svg)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      }
+    ]
   }
 }

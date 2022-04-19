@@ -1,3 +1,4 @@
+#! /usr/bin/python
 import argparse
 from arg_parser import parse_subccmd
 
@@ -54,16 +55,30 @@ def parse_arguments():
                                                    "and uploads them to MechanicalTurk")
     create_mturk.add_argument('-t', '--title', type=str, required=True,
                              help="Title of the HIT")
-    create_mturk.add_argument('-d', '--dir', type=str, required=False,
+    create_mturk.add_argument('-d', '--dir', type=str, default='docs/svg', required=False,
                              help="SVGs directory")
-    create_mturk.add_argument('-n', '--num', type=int, required=False,
+    create_mturk.add_argument('-n', '--num', type=int, default=20, required=False,
                              help="number of slides per HIT")
-    create_mturk.add_argument('-l', '--lifetime', type=int, required=False,
+    create_mturk.add_argument('-l', '--lifetime', type=int, default=600, required=False,
                              help="lifetime for the HIT in seconds")
 
+    create_mturk.add_argument('--limit', default=float('inf'), required=False,
+                            help="Maximum number of HITs to create")
 
     delete_mturk = mturk_sub.add_parser('delete', help='delete -h',
                                       description="Deletes all available Hits from MechanicalTurk")#TODO fix, delete not preformed
+
+    firebase_parser = subparsers.add_parser('firebase', help='firebase -h', description="Handle firebase database")
+    firebase_sub = firebase_parser.add_subparsers(title='firebase commands', dest='firebasecmd')
+
+    read_firebase = firebase_sub.add_parser('read', help='read -h',
+                                        description="Handles reading/downloading data from firebase")
+    read_firebase.add_argument('-p', '--path', type=str, default='/', required=False)
+    
+    read_slides_firebase = firebase_sub.add_parser('read-slides', help='read -h',
+                                        description="read slides data from firebase")
+
+    read_slides_firebase.add_argument('-o', '--out', type=str, default=None, required=False, help='Output file path')
 
 
     args = vars(ap.parse_args())
