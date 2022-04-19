@@ -20,6 +20,7 @@
 
 from math import sqrt, sin, cos, pi as PI
 import os
+import sys
 
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
@@ -32,6 +33,7 @@ import svgwrite
 import numpy as np
 
 #===============================================================================
+sys.path.append(os.getcwd())
 
 from drawml.formula import Geometry, radians
 
@@ -143,9 +145,14 @@ class SvgMaker(object):
         self.dynamic_path = None
         self.dynamic_svg = None
         self.slide_number = slide_number
-        self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, f'group{group:02d}_slide{slide_number:02d}.svg'),
-                                     size=svg_coords(slide_size[0], slide_size[1]))
+        self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, f'group{group:02d}_slide{slide_number:02d}.svg'),)
+                                     #size=svg_coords(slide_size[0], slide_size[1]))
         self._dwg.defs.add(self._dwg.style('.non-scaling-stroke { vector-effect: non-scaling-stroke; }'))
+        width,height = svg_coords(slide_size[0], slide_size[1])
+        self._dwg.viewbox(0,0,width, height)
+        # self._dwg.defs['viewbox'] = f"0 0 {width} {height}"
+        # self._dwg.defs.add(self._dwg.viewbox(0,0,width, height))
+
         # self._dwg.viewbox(0,0,*svg_coords(slide_size[0], slide_size[1]))
         if self.svg_from_shapes(slide.shapes, self._dwg):
             self._dwg.save(pretty=True)

@@ -1,0 +1,46 @@
+<html>
+    <head>
+      <title></title>
+      <script type="text/javascript">
+        var verifyCallback = function(response) {
+
+          var submit = document.getElementById("submit_button");
+          submit.disabled = false;
+        };
+        var onloadCallback = function() {
+          // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+          // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+          grecaptcha.render('captcha', {
+            'sitekey' : '6Le55ncfAAAAAG_P6sl5yFGExjqFI21iOuNaC7zS',
+            'callback' : verifyCallback,
+          });
+        };
+
+      </script>
+    </head>
+    <body>
+      <!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. -->
+        <form>
+          <label for='age'>Age:</label>
+          <input name="age" type="number" required/><br/><br/>
+          <label for='gender'>Genger:</label>
+          <select name="gender" id="gender" required>
+              <option disabled selected value> -- select an option -- </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+          </select><br/><br/>
+          <label for='hand'>Strong Hand:</label>
+          <select name="hand" id="hand" required>
+            <option disabled selected value> -- select an option -- </option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+            <option value="other">Other</option>
+          </select><br/><br/>
+        <div id="captcha"></div>
+        <br>
+        <input type="submit" value="Submit" id="submit_button" class="jspsych-btn jspsych-survey-html-form" disabled>
+      </form>
+      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    </body>
+  </html>

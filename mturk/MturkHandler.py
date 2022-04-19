@@ -82,7 +82,7 @@ class MturkHandler(object):
         return qual_response['QualificationType']['QualificationTypeId']
 
 
-    def create_hit(self, title, slides_lst,max_assignments=10,lifetime=1800,duration=1800,reward=0.11,
+    def create_hit(self, title, slides_lst,max_assignments=10,lifetime=1800,duration=1800,reward=1.8,
                     candidate_min_hit_approved=0,candidate_min_hit_approved_percent=0):
         """
         Creates a HIT and sends it to Mturk
