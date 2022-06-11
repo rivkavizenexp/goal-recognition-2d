@@ -10,6 +10,7 @@ xml_schema_url = 'http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchem
 class MturkHandler(object):
 
     def __init__(self,production=False):
+        self.prod = production
         self.client = self.init_client(production)
 
     def init_client(self,production=False):
@@ -108,7 +109,7 @@ class MturkHandler(object):
         """
         test_question = self.create_question_xml(slides_lst)
 
-        color_test_id = '3FZJH8GF5PNJOMP9X9GB4DKHFBZVZV' # '31U92A8DCXY0NOFRQD50GDEX71NFXK' if from rvizen account
+        color_test_id = '3FZJH8GF5PNJOMP9X9GB4DKHFBZVZV' if self.prod else '31U92A8DCXY0NOFRQD50GDEX71NFXK' #if from rvizen account
 
         #create qualification requirements
         qualification_requirements = [
