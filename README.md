@@ -25,7 +25,7 @@ if -c not specified, the program will create the minimum required number of hits
 
 ### to review Assignments use the command:
 ```[bash]
- python3 main.py [-p] mturk review [-auto]
+ python3 main.py [-p] mturk review [--auto]
 ```
 if the auto flag specified, the program will automatically accept or reject assignments, otherwise the program will ask the user what to do 
 
