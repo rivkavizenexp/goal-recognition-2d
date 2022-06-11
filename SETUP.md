@@ -45,10 +45,49 @@ The file structure should be:
 [default]
 aws_access_key_id=<public key>
 aws_secret_access_key=<secret key>
+[sandbox]
+aws_access_key_id=<public key>
+aws_secret_access_key=<secret key>
 ```
+the sandbox credential can be identical to the default ones, but doesn't have to
 
 Follow [this guide](https://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkGettingStartedGuide/SetUp.html)
 to setup your AWS account and create the access keys 
 
 And follow [this documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/mturk.html#MTurk.Client) 
 for an API to Mturk through python's boto3  
+
+## MTurk
+Enter your parameters to the following file - 
+`/.aws/mturk`
+
+The file structure should be:
+```text
+[default]
+reward=<reward of hit in dollars>
+bonus=<bonus of hit in dollars>
+duration=<duration of hit is seconds>
+move_time=<time limit to each slide>
+initial_delay=<initial delay>
+color_qualification_test_id=<test_id>
+candidate_min_hit_approved=<min_appruved_hit>
+candidate_min_hit_approved_percent=<min_appruved_pct>
+countries=<country_code>,...
+[sandbox]
+reward=<reward of hit in dollars>
+bonus=<bonus of hit in dollars>
+duration=<duration of hit is seconds>
+move_time=<time limit to each slide>
+initial_delay=<initial delay>
+color_qualification_test_id=<test_id>
+candidate_min_hit_approved=<min_appruved_hit>
+candidate_min_hit_approved_percent=<min_appruved_pct>
+countries=<country_code>,...
+```
+
+make sure you create color blindness qualification test and stored its id in the file:
+```[bash]
+python3 main.py mturk [-p] create_test
+```
+specify -p to create the test on production enviorment
+

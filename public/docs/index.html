@@ -80,13 +80,12 @@
         'quest4':[]
     }
 
-    const num_pictures = 20;
-    const initial_delay = 5;
-    const move_time = 30;
-    const bonus_amount = 0.6;
-    const payment_amount = 1.8;
-
-    var slides_to_test = ["group15_slide15"];
+    const num_pictures = {{num_pictures}};
+    const initial_delay = {{initial_delay}};
+    const move_time = {{move_time}};
+    const bonus_amount = {{bonus_amount}};
+    const payment_amount = {{payment_amount}};
+    var slides_to_test = {{slides_to_test}};
 
     // Define sign in callback
     auth.onAuthStateChanged(function(user){
@@ -264,7 +263,7 @@
             "the picture which is most suitable place for you.</p>" +
             "<p>You will have " + move_time + " seconds to move the object." +
             " When the time will expire, you will be asked to move to the next picture.</p>",
-            "<p>The experiment will be completed after 20 pictures.</p>"+
+            "<p>The experiment will be completed after "+num_pictures+" pictures.</p>"+
             "<p>Bonus of "+bonus_amount+"$ will be added to the "+payment_amount+"$ experiment's payment.</p>"+
             '<p>Please note:</p>'+
             '<p>1. if you use the "back/refresh" option, the experiment will be closed,'+

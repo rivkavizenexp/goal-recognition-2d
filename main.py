@@ -87,6 +87,10 @@ def parse_arguments():
     
     review_mturk.add_argument('-a', '--auto', action='store_true', help='automatic review flag')
 
+    test_mturk = mturk_sub.add_parser('make_test', help='make_test -h',
+                                      description="creates color blindness test")
+
+
     args = vars(ap.parse_args())
     return args
 

@@ -58,9 +58,9 @@ def parse_mturk(args):
     elif sub_turk_cmd == 'create':
         title = args['title']
         svg_dir = args.get('svg_dir','public/docs/svg')
-        slides_per_hit = args.get('num',20)
-        limit_hits = float(args.get('count',float('inf')))
-        lifetime = args.get('lifetime',600)
+        slides_per_hit = int(args.get('num',20))
+        limit_hits = args.get('count',None)
+        lifetime = int(args.get('lifetime',600))
         mturk_create_all_hits(title=title,
                             svg_dir=svg_dir,
                             slides_per_hit=slides_per_hit,
@@ -71,6 +71,8 @@ def parse_mturk(args):
         mturk_delete_all_hits()
     elif sub_turk_cmd =='review':
         mturk_review(auto=args['auto'],production=prod)
+    elif sub_turk_cmd =='create_test':
+        mturk_create_colorblindness_test(prod)
 
 def parse_firebase(args):
     sub_cmd = args['firebasecmd']
@@ -225,10 +227,13 @@ def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limi
     file_list = sorted([file for file in os.listdir(svg_dir) if os.path.isfile(os.path.join(svg_dir,file))])
     file_groups = [[file[:-4] for file in file_list if file.startswith(f'group{group:02d}')] for group in range(1,16)]
     num_hit = max([len(i) for i in file_groups])
-
+    if limit_hits is None:
+        limit_hits = num_hit
+    limit_hits = int(limit_hits)
     #generate all hits
     hits = []
-    for idx in range(int(min(num_hit,limit_hits))):
+    for h_idx in range(limit_hits):
+        idx = h_idx%num_hit
         hit=[]
         for i in range(slides_per_hit):
             if i<len(file_groups):
@@ -245,23 +250,11 @@ def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limi
                 hit.append(rand_slide)
         random.shuffle(hit)
         hits.append(hit)
-    
-    min_appruved = 1000
-    min_appruved_pct = 98
-    countries = ['US']
-    if not production:
-        min_appruved = 0
-        min_appruved_pct = 0
-        countries = ['US','IL']
-
 
     # create all hits
     mturk_handler = MturkHandler(production)
     pool = ThreadPool(20)
-    res = pool.map(lambda hit:mturk_handler.create_hit(title, hit,lifetime=lifetime,
-                                                            candidate_min_hit_approved=min_appruved,
-                                                            candidate_min_hit_approved_percent=min_appruved_pct,
-                                                            countries=countries),hits)
+    res = pool.map(lambda hit:mturk_handler.create_hit(title, hit,lifetime=lifetime),hits)
     hit_ids = [r['HIT']['HITId'] for r in res]
     for hit in res:
         del hit['HIT']['Question']

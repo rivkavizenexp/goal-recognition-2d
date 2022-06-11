@@ -67,9 +67,19 @@ class MturkHandler(object):
         index_path = Path.cwd() / 'public' / 'docs' / 'index.html'
         index_html = index_path.read_text()
 
-        index_html = index_html.replace('var slides_to_test = ["group15_slide15"];',
-                                        'var slides_to_test = ' +
-                                        str(slides_lst) + ';')
+        config = configparser.ConfigParser()
+
+
+        cred_filename = Path.cwd() / '.aws' / 'mturk'
+        config.read(cred_filename)
+        conf = config['default' if self.prod else 'sandbox']
+
+        index_html = index_html.replace('{{slides_to_test}}',str(slides_lst))
+        index_html = index_html.replace('{{num_pictures}}',str(len(slides_lst)))
+        index_html = index_html.replace('{{initial_delay}}',conf['initial_delay'])
+        index_html = index_html.replace('{{move_time}}',conf['move_time'])
+        index_html = index_html.replace('{{bonus_amount}}',conf['bonus'])
+        index_html = index_html.replace('{{payment_amount}}',conf['reward'])
 
         html_content = SubElement(envelope, 'HTMLContent')
         html_content.text = CDATA(index_html)
@@ -94,8 +104,7 @@ class MturkHandler(object):
                         TestDurationInSeconds=300)
         return qual_response['QualificationType']['QualificationTypeId']
 
-    def create_hit(self, title, slides_lst,max_assignments=1,lifetime=1800,duration=1800,reward=1.8,
-                    candidate_min_hit_approved=1000,candidate_min_hit_approved_percent=98,countries=['US']):
+    def create_hit(self, title, slides_lst,max_assignments=1,lifetime=1800):
         """
         Creates a HIT and sends it to Mturk
         Parameters:
@@ -109,27 +118,32 @@ class MturkHandler(object):
         """
         test_question = self.create_question_xml(slides_lst)
 
-        color_test_id = '3FZJH8GF5PNJOMP9X9GB4DKHFBZVZV' if self.prod else '31U92A8DCXY0NOFRQD50GDEX71NFXK' #if from rvizen account
+        config = configparser.ConfigParser()
+
+        config_filename = Path.cwd() / '.aws' / 'mturk'
+        config.read(config_filename)
+        conf = config['default' if self.prod else 'sandbox']
+        
 
         #create qualification requirements
         qualification_requirements = [
             {'QualificationTypeId': '000000000000000000L0',#percent hits approved
                 'Comparator': 'GreaterThanOrEqualTo',
-                'IntegerValues': [candidate_min_hit_approved_percent],
+                'IntegerValues': [int(conf['candidate_min_hit_approved_percent'])],
                 'ActionsGuarded': 'Accept'
             },
             {'QualificationTypeId': '00000000000000000040',#number hits approved
                 'Comparator': 'GreaterThanOrEqualTo',
-                'IntegerValues': [candidate_min_hit_approved],
+                'IntegerValues': [int(conf['candidate_min_hit_approved'])],
                 'ActionsGuarded': 'Accept'
             },
-            {'QualificationTypeId':color_test_id,#color blindness qualification, for prod: 
+            {'QualificationTypeId':conf['color_qualification_test_id'],#color blindness qualification, for prod: 
                 'Comparator': 'EqualTo',
                 'IntegerValues':[100]
             },
             {'QualificationTypeId': '00000000000000000071',#US only
                 'Comparator': 'In',#'EqualTo',
-                'LocaleValues': [{ 'Country': c } for c in countries]
+                'LocaleValues': [{ 'Country': c.strip().upper() } for c in conf['countries'].split(',')]
             },
         ]
         
@@ -137,8 +151,8 @@ class MturkHandler(object):
             # Change/Add to these parameters as you see fit
             MaxAssignments=max_assignments,
             LifetimeInSeconds=lifetime,
-            AssignmentDurationInSeconds=duration,
-            Reward=str(reward),
+            AssignmentDurationInSeconds=int(conf['duration']),
+            Reward=conf['reward'],
             Title=title,
             Keywords='question, shapes, research',
             Description='Move shapes to their right place',
