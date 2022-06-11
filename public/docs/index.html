@@ -250,6 +250,8 @@
     }
 
     function create_quiz(){
+
+
         /* define welcome message trial */
         var welcome = {
             type: "instructions",
@@ -264,8 +266,10 @@
             " When the time will expire, you will be asked to move to the next picture.</p>",
             "<p>The experiment will be completed after 20 pictures.</p>"+
             "<p>Bonus of "+bonus_amount+"$ will be added to the "+payment_amount+"$ experiment's payment.</p>"+
-            '<p>Please note - if you use the "back/refresh" option, the experiment will be closed,'+
-            ' no payment will be given and you will not be able to run the experiment again.</p>',
+            '<p>Please note:</p>'+
+            '<p>1. if you use the "back/refresh" option, the experiment will be closed,'+
+            ' no payment will be given and you will not be able to run the experiment again.</p>'+
+            '<p>2. Experiment should be run in full screen.</p>',
             "<p>In the next 2 pages, you will see demo of object movment.</p>"],
             show_clickable_nav: true,
             show_page_number: true
@@ -274,6 +278,7 @@
         //add_captcha();
         add_preview();
         if (!is_preview) {
+            //add_agreement_form();
             add_questions();
             add_form();
         }else{
@@ -506,6 +511,17 @@
             }
         };
         pre_timeline.push(recaptcha);
+    }
+
+    function add_agreement_form(){
+        var trial = {
+            type: "survey-html-form",
+            preamble: '<p>Read and accept this agreement document:</p>',
+            html: '<iframe id="iframepdf" src="agreement_form.html" height="600px" width="700px"></iframe></br>'+
+            '<input type="checkbox" name="accept" required>I`ve read and accept the terms and conditions</br>'
+          };
+          pre_timeline.push(trial);
+
     }
 
     function add_questions() {

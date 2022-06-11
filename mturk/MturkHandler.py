@@ -1,9 +1,8 @@
 import configparser
 import boto3
+from botocore.config import Config
 from pathlib import Path
 from lxml.etree import Element, SubElement, CDATA, tostring
-import random
-import os
 
 xml_schema_url = 'http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2011-11-11/HTMLQuestion.xsd'
 
@@ -22,8 +21,14 @@ class MturkHandler(object):
 
         cred_filename = Path.cwd() / '.aws' / 'credentials'
         config.read(cred_filename)
-        aws_access_key_id = config['default']['aws_access_key_id']
-        aws_secret_access_key = config['default']['aws_secret_access_key']
+
+        if production:
+            aws_access_key_id = config['default']['aws_access_key_id']
+            aws_secret_access_key = config['default']['aws_secret_access_key']
+        else:
+            aws_access_key_id = config['sandbox']['aws_access_key_id']
+            aws_secret_access_key = config['sandbox']['aws_secret_access_key']
+
 
         # Sandbox url
         sandbox_url = 'https://mturk-requester-sandbox.us-east-1.amazonaws.com'
@@ -32,12 +37,19 @@ class MturkHandler(object):
 
         endpoint_url  = production_url if production else sandbox_url
 
+        config = Config(
+            retries = dict(
+                max_attempts = 10
+            )
+        )
+
         client = boto3.client(
             'mturk',
             endpoint_url=endpoint_url,
             region_name=region_name,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
+            config=config
         )
 
         return client
@@ -67,7 +79,7 @@ class MturkHandler(object):
         return tostring(envelope, encoding='unicode')
 
     def create_color_qualification_test(self):
-        path_root=Path.cwd() / 'docs' 
+        path_root=Path.cwd() / 'public' / 'docs' 
         questions = open(path_root/'color_blindness_test.xml', mode='r').read()
         answers = open(path_root/'color_blindness_answers.xml', mode='r').read()
 
@@ -81,9 +93,8 @@ class MturkHandler(object):
                         TestDurationInSeconds=300)
         return qual_response['QualificationType']['QualificationTypeId']
 
-
-    def create_hit(self, title, slides_lst,max_assignments=10,lifetime=1800,duration=1800,reward=1.8,
-                    candidate_min_hit_approved=0,candidate_min_hit_approved_percent=0):
+    def create_hit(self, title, slides_lst,max_assignments=1,lifetime=1800,duration=1800,reward=1.8,
+                    candidate_min_hit_approved=1000,candidate_min_hit_approved_percent=98,countries=['US']):
         """
         Creates a HIT and sends it to Mturk
         Parameters:
@@ -109,17 +120,16 @@ class MturkHandler(object):
                 'IntegerValues': [candidate_min_hit_approved],
                 'ActionsGuarded': 'Accept'
             },
-            {'QualificationTypeId':'31U92A8DCXY0NOFRQD50GDEX71NFXK',#color blindness qualification
+            {'QualificationTypeId':'31U92A8DCXY0NOFRQD50GDEX71NFXK',#color blindness qualification, for prod: '3FZJH8GF5PNJOMP9X9GB4DKHFBZVZV'
                 'Comparator': 'EqualTo',
                 'IntegerValues':[100]
             },
             {'QualificationTypeId': '00000000000000000071',#US only
                 'Comparator': 'In',#'EqualTo',
-                'LocaleValues': [{ 'Country': "US" },{ 'Country': "IL" }]
+                'LocaleValues': [{ 'Country': c } for c in countries]
             },
         ]
-
-
+        
         response = self.client.create_hit(
             # Change/Add to these parameters as you see fit
             MaxAssignments=max_assignments,
@@ -136,13 +146,9 @@ class MturkHandler(object):
         # The response included several fields that will be helpful later
         hit_type_id = response['HIT']['HITTypeId']
         hit_id = response['HIT']['HITId']
-        print("\nCreated HIT: {}".format(hit_id))
-        print("With shapes from slides: {}".format(slides_lst))
-        print("\nCreated HIT type id: {}".format(hit_type_id))
 
-        # This will return $10,000.00 in the MTurk Developer Sandbox
-        print(self.client.get_account_balance()['AvailableBalance'])
-        return hit_id
+        print(f"Created HIT: {hit_id}")
+        return response
 
     def read_hits(self):
         """
@@ -152,6 +158,10 @@ class MturkHandler(object):
         """
         list_hits = self.client.list_hits()
         return list_hits
+
+    def get_hit(self,hit_id):
+        return self.client.get_hit(HITId=hit_id)
+
 
     def read_reviewable_hits(self):
         list_hits = self.client.list_reviewable_hits()

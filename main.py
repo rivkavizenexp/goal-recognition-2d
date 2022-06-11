@@ -1,6 +1,6 @@
 #! /usr/bin/python
 import argparse
-from arg_parser import parse_subccmd
+from arg_parser import parse_subccmd,mturk_create_colorblindness_test
 
 
 def parse_arguments():
@@ -32,6 +32,8 @@ def parse_arguments():
     mturk_parser = subparsers.add_parser('mturk', help='mturk -h',
                                          description="Handles the connection "
                                                      "to MechanicalTurk")
+    mturk_parser.add_argument('-p', '--production', action='store_true', help='production flag')
+                        
     mturk_sub = mturk_parser.add_subparsers(title='mturk commands', dest='mturkcmd')
 
     read_mturk = mturk_sub.add_parser('read', help='read -h',
@@ -62,11 +64,11 @@ def parse_arguments():
     create_mturk.add_argument('-l', '--lifetime', type=int, default=600, required=False,
                              help="lifetime for the HIT in seconds")
 
-    create_mturk.add_argument('--limit', default=float('inf'), required=False,
+    create_mturk.add_argument('-c','--count', default=float('inf'), required=False,
                             help="Maximum number of HITs to create")
 
     delete_mturk = mturk_sub.add_parser('delete', help='delete -h',
-                                      description="Deletes all available Hits from MechanicalTurk")#TODO fix, delete not preformed
+                                      description="Deletes all available Hits from MechanicalTurk")
 
     firebase_parser = subparsers.add_parser('firebase', help='firebase -h', description="Handle firebase database")
     firebase_sub = firebase_parser.add_subparsers(title='firebase commands', dest='firebasecmd')
@@ -80,6 +82,10 @@ def parse_arguments():
 
     read_slides_firebase.add_argument('-o', '--out', type=str, default=None, required=False, help='Output file path')
 
+    review_mturk = mturk_sub.add_parser('review', help='review -h',
+                                      description="review all available Assignments on MechanicalTurk")
+    
+    review_mturk.add_argument('-a', '--auto', action='store_true', help='automatic review flag')
 
     args = vars(ap.parse_args())
     return args
