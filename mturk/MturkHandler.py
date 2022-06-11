@@ -108,6 +108,8 @@ class MturkHandler(object):
         """
         test_question = self.create_question_xml(slides_lst)
 
+        color_test_id = '3FZJH8GF5PNJOMP9X9GB4DKHFBZVZV' # '31U92A8DCXY0NOFRQD50GDEX71NFXK' if from rvizen account
+
         #create qualification requirements
         qualification_requirements = [
             {'QualificationTypeId': '000000000000000000L0',#percent hits approved
@@ -120,7 +122,7 @@ class MturkHandler(object):
                 'IntegerValues': [candidate_min_hit_approved],
                 'ActionsGuarded': 'Accept'
             },
-            {'QualificationTypeId':'31U92A8DCXY0NOFRQD50GDEX71NFXK',#color blindness qualification, for prod: '3FZJH8GF5PNJOMP9X9GB4DKHFBZVZV'
+            {'QualificationTypeId':color_test_id,#color blindness qualification, for prod: 
                 'Comparator': 'EqualTo',
                 'IntegerValues':[100]
             },
