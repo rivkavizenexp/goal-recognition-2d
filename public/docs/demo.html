@@ -86,7 +86,7 @@
     const bonus_amount = 0.6;
     const payment_amount = 1.8;
 
-    var slides_to_test = ['group01_slide15', 'group02_slide37', 'group03_slide45', 'group04_slide03', 'group05_slide01', 'group06_slide12', 'group07_slide24', 'group08_slide74', 'group09_slide13', 'group10_slide06', 'group11_slide28', 'group12_slide23', 'group13_slide11', 'group14_slide14', 'group15_slide39', 'group05_slide32', 'group14_slide09', 'group05_slide13', 'group06_slide09', 'group08_slide15'];
+    var slides_to_test = ['group12_slide39' ,'group14_slide23' ,'group13_slide17', 'group09_slide31'];
     // Define sign in callback
     auth.onAuthStateChanged(function(user){
         if (user) {
@@ -160,7 +160,7 @@
                 survey_data['AssignmentId'] = assignment_id
                 survey_data['quizMistakes'] = quiz_mistakes
                 if(!is_preview){
-                    send_user_data(survey_data, turk_info);
+                    //send_user_data(survey_data, turk_info);
                 }
                 //start_test()
                 create_test()
@@ -212,7 +212,7 @@
                 var exp_data = data.last(slides_to_test.length+1).first(slides_to_test.length).values();
                 var review = JSON.parse(data.filter({"trial_type":"survey-text"}).select("responses").values[0]).Q0;
                 console.log(review)
-                send_trial_data(exp_data, turk_info,review);
+                //send_trial_data(exp_data, turk_info,review);
             },
             show_progress_bar: true
         });

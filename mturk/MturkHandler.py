@@ -3,6 +3,7 @@ import boto3
 from botocore.config import Config
 from pathlib import Path
 from lxml.etree import Element, SubElement, CDATA, tostring
+config_path = Path(__file__).parent / '..' / '.aws'
 
 xml_schema_url = 'http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2011-11-11/HTMLQuestion.xsd'
 
@@ -15,12 +16,12 @@ class MturkHandler(object):
 
     def init_client(self,production=False):
         config = configparser.ConfigParser()
-
-        config_filename = Path.cwd() / '.aws' / 'config'
+        
+        config_filename = config_path / 'config'
         config.read(config_filename)
         region_name = config['default']['region']
 
-        cred_filename = Path.cwd() / '.aws' / 'credentials'
+        cred_filename = config_path / 'credentials'
         config.read(cred_filename)
 
         if production:
@@ -179,7 +180,6 @@ class MturkHandler(object):
     def get_hit(self,hit_id):
         return self.client.get_hit(HITId=hit_id)
 
-
     def read_reviewable_hits(self):
         list_hits = self.client.list_reviewable_hits()
         return list_hits
@@ -192,8 +192,6 @@ class MturkHandler(object):
         return self.client.get_account_balance()['AvailableBalance']
 
     def get_assignments(self,hit_id):
-        # list_hits = self.client.list_hits()
-        # assignments = [self.client.list_assignments_for_hit(HITId=hit['HITId'])['Assignments'] for hit in list_hits['HITs']]
         assignments = self.client.list_assignments_for_hit(HITId=hit_id)['Assignments']
         return assignments
     

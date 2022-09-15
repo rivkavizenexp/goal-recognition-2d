@@ -4,10 +4,12 @@ from shapes.shape_update import ShapeUpdate
 from mturk.MturkHandler import MturkHandler
 import random
 import os
+import re
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+from firebase_utils import firebase_handler
 from multiprocessing.pool import ThreadPool
 
 here = os.path.dirname(os.path.abspath(__file__))+'/'
@@ -49,6 +51,7 @@ def parse_mturk(args):
     prod = args['production']
     if sub_turk_cmd == 'read':
         mturk_read(production = prod)
+        firebase_update_hit_status(prod)
     elif sub_turk_cmd == 'write':
         title = args['title']
         slides_lst = args['choose']
@@ -60,7 +63,7 @@ def parse_mturk(args):
         svg_dir = args.get('svg_dir','public/docs/svg')
         slides_per_hit = int(args.get('num',20))
         limit_hits = args.get('count',None)
-        lifetime = int(args.get('lifetime',600))
+        lifetime = int(args.get('lifetime',60*60*24*30))
         mturk_create_all_hits(title=title,
                             svg_dir=svg_dir,
                             slides_per_hit=slides_per_hit,
@@ -152,7 +155,6 @@ def mturk_review_assignment(assignment,mturk=None,bonus_amount=0.6,production=Fa
     # read assignment data from firebase
     assignment_data=next(iter(firebase_read(path=f"/workers/{assignment['WorkerId']}").values()),{})
     hit = assignment_data.get('hit',{})
-    # hit = pd.DataFrame(assignment_data.get('hit',{})).T
     if len(hit)==0:
         print("hit hot found in database (probably due to validation error), rejecting assignment")
         #TODO hangle error
@@ -219,44 +221,58 @@ def mturk_delete_all_hits(production=False):
         pool.map(del_hit,hits)
         hits = mturk.read_hits()['HITs']
     
-def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limit_hits=float('inf'),lifetime=600,production=False):
+def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limit_hits=None,lifetime=60*60*24*30,production=False):
     ''' 
     Create all required hits
     '''
     #list all files
-    file_list = sorted([file for file in os.listdir(svg_dir) if os.path.isfile(os.path.join(svg_dir,file))])
-    file_groups = [[file[:-4] for file in file_list if file.startswith(f'group{group:02d}')] for group in range(1,16)]
+    file_list = sorted([file[:-4] for file in os.listdir(svg_dir) if os.path.isfile(os.path.join(svg_dir,file))])
+    file_groups = [[file for file in file_list if file.startswith(f'group{group:02d}')] for group in range(1,16)]
     num_hit = max([len(i) for i in file_groups])
     if limit_hits is None:
         limit_hits = num_hit
     limit_hits = int(limit_hits)
+    slide_counts = get_slide_counts(production)
+    
     #generate all hits
     hits = []
     for h_idx in range(limit_hits):
         idx = h_idx%num_hit
         hit=[]
+
         for i in range(slides_per_hit):
-            if i<len(file_groups):
+            min_count=float('inf')
+            slide_to_add = None
+
+            # ensure that there is at least one slide of each group in the hit
+            if i<len(file_groups):                
                 lst = file_groups[i]
-                if idx<len(lst):
-                    hit.append(lst[idx])
-                else:
-                    hit.append(lst[random.randint(0,len(lst)-1)])
+                # find most unused slide in group
+                for slide in lst:
+                    if slide_counts.get(f'svg-{slide}',0) < min_count and slide not in hit:
+                        slide_to_add = slide
+                        min_count = slide_counts.get(f'svg-{slide}',0)
             else:
-                lst = file_groups[random.randint(0,len(file_groups)-1)]
-                rand_slide = lst[random.randint(0,len(lst)-1)]
-                while(rand_slide in hit):
-                    rand_slide = lst[random.randint(0,len(lst)-1)]
-                hit.append(rand_slide)
+                #find most unused slide from all slides
+                for slide in file_list:
+                    if slide_counts.get(f'svg-{slide}',0) < min_count and slide not in hit:
+                        slide_to_add = slide
+                        min_count = slide_counts.get(f'svg-{slide}',0)
+                hit.append(slide_to_add)
+                slide_counts[f'svg-{slide_to_add}'] = slide_counts.get(f'svg-{slide}',0) + 1
+
+            hit.append(slide_to_add)
+            slide_counts[f'svg-{slide_to_add}'] = slide_counts.get(f'svg-{slide}',0) + 1
+
         random.shuffle(hit)
         hits.append(hit)
-
     # create all hits
     mturk_handler = MturkHandler(production)
     pool = ThreadPool(20)
     res = pool.map(lambda hit:mturk_handler.create_hit(title, hit,lifetime=lifetime),hits)
     hit_ids = [r['HIT']['HITId'] for r in res]
     for hit in res:
+        hit['slides'] = re.findall(r'group[0-9]{2}_slide[0-9]{2}',hit['Question'])
         del hit['HIT']['Question']
         hit['HIT']['Expiration'] = hit['HIT']['Expiration'].timestamp()
         hit['HIT']['CreationTime'] = hit['HIT']['CreationTime'].timestamp()
@@ -282,6 +298,22 @@ def firebase_read_slides():
                         **hit}
                 data_list.append(frame)
     return data_list
+
+def firebase_update_hit_status(production):
+    mturk = MturkHandler(production)
+    hits = firebase_read('hits') # get all hits from database
+    if hits is None:
+        return
+    hit_ids = hits.keys()
+    def update_hit(hit_id):
+        hit = mturk.get_hit(hit_id)['HIT']
+        hit['slides'] = re.findall(r'group[0-9]{2}_slide[0-9]{2}',hit['Question'])
+        del hit['Question']
+        hit['Expiration'] = hit['Expiration'].timestamp()
+        hit['CreationTime'] = hit['CreationTime'].timestamp()
+        firebase_write(hit['HITId'],hit,path='hits') #update hit data on database
+    pool = ThreadPool(20)
+    pool.map(update_hit,hit_ids)
 
 def firebase_read(path='/'):
     if not firebase_admin._apps:
@@ -315,3 +347,19 @@ def firebase_delete(key,path='/'):
         })
     ref = db.reference(path)
     ref.child(key).delete()
+
+def get_slide_counts(production):
+    firebase_update_hit_status(production)
+    firebase = firebase_handler('/home/yair/vsCodeProjects/goal_recognition/goal-recognition-2d/firebase-adminsdk.json')
+    slides = firebase.read('slides')
+    
+    #count all filled slides
+    slide_counts = {key:len(val) for key,val in slides.items()}
+    
+    #count all pending slides
+    hits = {hit_id:hit for hit_id,hit in firebase.read('hits').items()}
+    for hit_id,hit in hits.items():
+        if hit['Expiration'] > datetime.now().timestamp() and hit['HITStatus'] in ['Assignable']:
+            for s in hit['slides']:
+                slide_counts[s] = slide_counts.get(s,0) + hit['NumberOfAssignmentsAvailable'] + hit['NumberOfAssignmentsPending']
+    return slide_counts

@@ -1,3 +1,4 @@
+#! /usr/bin/python
 #===============================================================================
 #
 #  Flatmap viewer and annotation tools
@@ -145,6 +146,8 @@ class SvgMaker(object):
         self.dynamic_path = None
         self.dynamic_svg = None
         self.slide_number = slide_number
+        self.output_dir=output_dir
+        self.group=group
         self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, f'group{group:02d}_slide{slide_number:02d}.svg'),)
                                      #size=svg_coords(slide_size[0], slide_size[1]))
         self._dwg.defs.add(self._dwg.style('.non-scaling-stroke { vector-effect: non-scaling-stroke; }'))
@@ -219,8 +222,12 @@ class SvgMaker(object):
                 self.svg_from_shapes(shape.shapes, svg_group)
 
             elif shape.shape_type == MSO_SHAPE_TYPE.TEXT_BOX:
-                pass  # or recognise name of '#layer-id' and get layer name...
-
+                print(shape.text)
+                if shape.text.lower().strip() =='disable':
+                    return False
+                svg_parent.filename=os.path.join(self.output_dir, f'{shape.text}.svg')
+                # return False
+                # or recognise name of '#layer-id' and get layer name...
             else:
                 print('"{}" {} not processed...'.format(shape.name, str(shape.shape_type)))
 
