@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-from shapes.shape_update import ShapeUpdate
+from shapes.shape_update import slides_to_svgs,all_slides_to_svg
 from mturk.MturkHandler import MturkHandler
 import random
 import os
@@ -11,6 +11,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 from firebase_utils import firebase_handler
 from multiprocessing.pool import ThreadPool
+from data_analyzer import parse_args as parse_report
 
 here = os.path.dirname(os.path.abspath(__file__))+'/'
 
@@ -34,18 +35,19 @@ def parse_subccmd(sub_cmd, arguments):
         parse_mturk(arguments)
     elif sub_cmd == 'firebase':
         parse_firebase(arguments)
+    elif sub_cmd == 'report':
+        parse_report(arguments)
 
 def parse_update(args):
-    file_path = args['file_path']
+    file_path = args['file']
+    input_dir = args['input_dir']
     output = args['output']
-    slide_nums = args['slide_num']
-    shape_update = ShapeUpdate(file_path, output)
-    if slide_nums:
-        for number in slide_nums:
-            shape_update.update_svg_by_num(number)
-    else:
-        shape_update.update_svg()
 
+    if file_path:
+        slides_to_svgs(file_path,output)
+    elif input_dir:
+        all_slides_to_svg(input_dir,output)
+    
 def parse_mturk(args):
     sub_turk_cmd = args['mturkcmd']
     prod = args['production']
@@ -60,10 +62,10 @@ def parse_mturk(args):
         mturk_write(title, slides_lst,production = prod)
     elif sub_turk_cmd == 'create':
         title = args['title']
-        svg_dir = args.get('svg_dir','public/docs/svg')
-        slides_per_hit = int(args.get('num',20))
-        limit_hits = args.get('count',None)
-        lifetime = int(args.get('lifetime',60*60*24*30))
+        svg_dir = args['svg_dir']
+        slides_per_hit = args['num']
+        limit_hits = args['count']
+        lifetime = args['lifetime']
         mturk_create_all_hits(title=title,
                             svg_dir=svg_dir,
                             slides_per_hit=slides_per_hit,
@@ -81,10 +83,10 @@ def parse_firebase(args):
     sub_cmd = args['firebasecmd']
 
     if sub_cmd == 'read':
-        print(firebase_read(args['path']))
+        print(firebase_read(True,args['path']))
     
     if sub_cmd == 'read-slides':
-        print(firebase_read_slides())
+        print(firebase_read_slides(True))
 
 def mturk_read(production=False):
     mturk_handler = MturkHandler(production)
@@ -97,17 +99,18 @@ def mturk_write(title, slides_lst,production=False):
 
 def mturk_review(auto=False,bonus_amount=0.6,production=False):
     mturk = MturkHandler(production=production)
-    hits = firebase_read('hits')
+    hits = firebase_read(production,'hits')
     if hits is None:
         print("no hits to review")
         return
     hit_ids = hits.keys()
     for hit_id in hit_ids:
         hit = mturk.get_hit(hit_id)['HIT']
+        hit['slides'] = re.findall(r'group[0-9]{2}_slide[0-9]{2}',hit['HIT']['Question'])
         del hit['Question']
         hit['Expiration'] = hit['Expiration'].timestamp()
         hit['CreationTime'] = hit['CreationTime'].timestamp()
-        firebase_write(hit['HITId'],hit,path='hits')
+        firebase_write(production,hit['HITId'],hit,path='hits')
 
         if hit['HITStatus'] in ['Assignable','Unassignable']:
             continue
@@ -119,7 +122,7 @@ def mturk_review(auto=False,bonus_amount=0.6,production=False):
                     mturk_review_assignment(assignment,mturk,bonus_amount=bonus_amount,production=production)
                 else:
                     status = assignment['AssignmentStatus']
-                    data = next(iter(firebase_read(path=f"/workers/{assignment['WorkerId']}").values()),{})
+                    data = next(iter(firebase_read(production,path=f"/workers/{assignment['WorkerId']}").values()),{})
                     hit = data.get('hit',{})
                     moves = [len(v.get('moves',{}))>0 for k,v in hit.items()]
                     percent_answerd = sum(moves)/len(moves)
@@ -141,7 +144,7 @@ def mturk_review(auto=False,bonus_amount=0.6,production=False):
                         if ans=='y':
                             mturk.send_bonus(worker_id,assignment_id,bonus_amount,"You have answerd all questions, and earned a Bonus.")
         print("reviewed:",hit_id)
-        firebase_delete(hit_id,'hits')
+        firebase_delete(production,hit_id,'hits')
     print("all assignments reviewed")
 
 def mturk_review_assignment(assignment,mturk=None,bonus_amount=0.6,production=False):
@@ -153,7 +156,7 @@ def mturk_review_assignment(assignment,mturk=None,bonus_amount=0.6,production=Fa
         mturk = MturkHandler(production)
 
     # read assignment data from firebase
-    assignment_data=next(iter(firebase_read(path=f"/workers/{assignment['WorkerId']}").values()),{})
+    assignment_data=next(iter(firebase_read(production,path=f"/workers/{assignment['WorkerId']}").values()),{})
     hit = assignment_data.get('hit',{})
     if len(hit)==0:
         print("hit hot found in database (probably due to validation error), rejecting assignment")
@@ -181,7 +184,7 @@ def mturk_review_assignment(assignment,mturk=None,bonus_amount=0.6,production=Fa
 def mturk_revirew_all_assignments(production=False):
     mturk = MturkHandler(production)
 
-    hits = firebase_read('hits')
+    hits = firebase_read(production,'hits')
     # hits = mturk.read_reviewable_hits()['HITs']
     while len(hits)!=0:
         print(hits)
@@ -221,7 +224,7 @@ def mturk_delete_all_hits(production=False):
         pool.map(del_hit,hits)
         hits = mturk.read_hits()['HITs']
     
-def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limit_hits=None,lifetime=60*60*24*30,production=False):
+def mturk_create_all_hits(title,svg_dir,slides_per_hit,limit_hits,lifetime,production=False):
     ''' 
     Create all required hits
     '''
@@ -272,11 +275,11 @@ def mturk_create_all_hits(title,svg_dir='public/docs/svg',slides_per_hit=20,limi
     res = pool.map(lambda hit:mturk_handler.create_hit(title, hit,lifetime=lifetime),hits)
     hit_ids = [r['HIT']['HITId'] for r in res]
     for hit in res:
-        hit['slides'] = re.findall(r'group[0-9]{2}_slide[0-9]{2}',hit['Question'])
+        hit['slides'] = re.findall(r'group[0-9]{2}_slide[0-9]{2}',hit['HIT']['Question'])
         del hit['HIT']['Question']
         hit['HIT']['Expiration'] = hit['HIT']['Expiration'].timestamp()
         hit['HIT']['CreationTime'] = hit['HIT']['CreationTime'].timestamp()
-        firebase_write(hit['HIT']['HITId'],hit['HIT'],path='hits')
+        firebase_write(production,hit['HIT']['HITId'],hit['HIT'],path='hits')
     return hit_ids
 
 def mturk_create_colorblindness_test(production=False):
@@ -285,8 +288,8 @@ def mturk_create_colorblindness_test(production=False):
     color_qualification_test_id = mturk_handler.create_color_qualification_test()
     print(f"color qualification test created, id:{color_qualification_test_id}")
 
-def firebase_read_slides():
-    slides = firebase_read('/slides/')
+def firebase_read_slides(prod=False):
+    slides = firebase_read(prod,'slides')
     data_list=[]
 
     for slide_id,slide in slides.items():
@@ -301,7 +304,7 @@ def firebase_read_slides():
 
 def firebase_update_hit_status(production):
     mturk = MturkHandler(production)
-    hits = firebase_read('hits') # get all hits from database
+    hits = firebase_read(production,'hits') # get all hits from database
     if hits is None:
         return
     hit_ids = hits.keys()
@@ -311,11 +314,11 @@ def firebase_update_hit_status(production):
         del hit['Question']
         hit['Expiration'] = hit['Expiration'].timestamp()
         hit['CreationTime'] = hit['CreationTime'].timestamp()
-        firebase_write(hit['HITId'],hit,path='hits') #update hit data on database
+        firebase_write(production,hit['HITId'],hit,path='hits') #update hit data on database
     pool = ThreadPool(20)
     pool.map(update_hit,hit_ids)
 
-def firebase_read(path='/'):
+def firebase_read(prod,path='/'):
     if not firebase_admin._apps:
         # Fetch the service account key JSON file contents
         cred = credentials.Certificate('firebase-adminsdk.json')
@@ -323,10 +326,14 @@ def firebase_read(path='/'):
         firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://goal-recognition.firebaseio.com'
         })
-    ref = db.reference(path)
-    return ref.get()
+    pth = os.path.join(('' if prod else 'test'),path)    
+    ref = db.reference(pth)
+    res = ref.get()
+    if res is None:
+        return {}
+    return res
 
-def firebase_write(key,data,path='/'):
+def firebase_write(prod,key,data,path='/'):
     if not firebase_admin._apps:
         # Fetch the service account key JSON file contents
         cred = credentials.Certificate(here + 'firebase-adminsdk.json')
@@ -334,10 +341,11 @@ def firebase_write(key,data,path='/'):
         firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://goal-recognition.firebaseio.com'
         })
-    ref = db.reference(path)
+    pth = os.path.join(('' if prod else 'test'),path)    
+    ref = db.reference(pth)
     ref.child(key).set(data)
 
-def firebase_delete(key,path='/'):
+def firebase_delete(prod,key,path='/'):
     if not firebase_admin._apps:
         # Fetch the service account key JSON file contents
         cred = credentials.Certificate(here + 'firebase-adminsdk.json')
@@ -345,19 +353,20 @@ def firebase_delete(key,path='/'):
         firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://goal-recognition.firebaseio.com'
         })
-    ref = db.reference(path)
+    pth = os.path.join(('' if prod else 'test'),path)    
+
+    ref = db.reference(pth)
     ref.child(key).delete()
 
 def get_slide_counts(production):
     firebase_update_hit_status(production)
-    firebase = firebase_handler('/home/yair/vsCodeProjects/goal_recognition/goal-recognition-2d/firebase-adminsdk.json')
-    slides = firebase.read('slides')
+    slides = firebase_read(production,'slides')
     
     #count all filled slides
     slide_counts = {key:len(val) for key,val in slides.items()}
     
     #count all pending slides
-    hits = {hit_id:hit for hit_id,hit in firebase.read('hits').items()}
+    hits = {hit_id:hit for hit_id,hit in firebase_read(production,'hits').items()}
     for hit_id,hit in hits.items():
         if hit['Expiration'] > datetime.now().timestamp() and hit['HITStatus'] in ['Assignable']:
             for s in hit['slides']:

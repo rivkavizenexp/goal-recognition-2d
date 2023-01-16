@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="100%" version="1.1" viewBox="0,0,1280.0,720.0" width="100%">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 26.82272965879265 A 27.996850393700786 26.82272965879265 0 0 1 27.996850393700782 -3.0555202579247984e-15 A 27.996850393700786 26.82272965879265 0 0 1 55.99370078740157 26.822729658792642 A 27.996850393700786 26.82272965879265 0 0 1 27.996850393700786 53.64545931758529 A 27.996850393700786 26.82272965879265 0 0 1 0.0 26.822729658792642 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,238.55979002624673,436.1783727034121)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,294.5534908136483,22.38687664041995)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,872.7740682414698,6.371653543307087)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M -0.0 -0.0 L -10.057112860892389 74.05711286089239 L -61.25711286089239 39.314225721784766 L -77.71433070866142 96.0 L -122.51433070866142 64.0 L -124.34288713910762 123.42855643044619 L -176.45711286089238 88.68566929133858 L -175.54288713910762 153.6 L -232.2285564304462 120.68566929133858 L -233.14288713910761 180.11422572178478"/>
+    </path>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+  </svg>
+</svg>

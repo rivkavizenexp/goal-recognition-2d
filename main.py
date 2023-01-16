@@ -17,9 +17,15 @@ def parse_arguments():
     update_parser = subparsers.add_parser('update', help='update -h',
                                           description="Updates SVG shapes from"
                                                       " given pptx path")
-    update_parser.add_argument('-f', '--file_path', type=str, required=True,
+    
+
+    input_group = update_parser.add_mutually_exclusive_group(required=True)
+    input_group.add_argument('-f', '--file', type=str, nargs='+',
                                help="Path to new PowerPoint file containing"
                                     " test slides")
+    input_group.add_argument('-i', '--input_dir', type=str,
+                            help="Path to input directory containing slides")
+
     update_parser.add_argument('-o', '--output', type=str, required=True,
                                help="Path to output directory where to store "
                                     "the new SVGs")
@@ -57,14 +63,14 @@ def parse_arguments():
                                                    "and uploads them to MechanicalTurk")
     create_mturk.add_argument('-t', '--title', type=str, required=True,
                              help="Title of the HIT")
-    create_mturk.add_argument('-d', '--dir', type=str, default='docs/svg', required=False,
+    create_mturk.add_argument('-d', '--svg_dir', type=str, default='public/docs/svg', required=False,
                              help="SVGs directory")
     create_mturk.add_argument('-n', '--num', type=int, default=20, required=False,
                              help="number of slides per HIT")
-    create_mturk.add_argument('-l', '--lifetime', type=int, default=600, required=False,
+    create_mturk.add_argument('-l', '--lifetime', type=int, default=60*60*24*30, required=False,
                              help="lifetime for the HIT in seconds")
 
-    create_mturk.add_argument('-c','--count', default=float('inf'), required=False,
+    create_mturk.add_argument('-c','--count', required=False,
                             help="Maximum number of HITs to create")
 
     delete_mturk = mturk_sub.add_parser('delete', help='delete -h',
@@ -90,6 +96,12 @@ def parse_arguments():
     test_mturk = mturk_sub.add_parser('make_test', help='make_test -h',
                                       description="creates color blindness test")
 
+    report_parser = subparsers.add_parser('report', help='report -h',
+                                          description="Generates a report "
+                                                      "from the given data")
+    report_parser.add_argument('--output_path', type=str, default='report.csv', help='Analyze experience data from firebase, and create a report')
+    report_parser.add_argument('--anchors_file',type=str, default=None, help="path for input anchors csv file")
+    report_parser.add_argument('--preview', action='store_true', help='create preview for each slide')
 
     args = vars(ap.parse_args())
     return args

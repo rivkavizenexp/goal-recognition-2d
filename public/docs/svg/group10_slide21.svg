@@ -13,7 +13,7 @@
   </svg>
   <svg id="static_3">
     <defs/>
-    <path class="non-scaling-stroke" d="M 0.0 48.0 L 48.0 0.0 L 96.0 48.0 L 48.0 96.0 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(0.7161235014556487,-0.697973588800394,0.697973588800394,0.7161235014556487,638.5067517412008,243.5821375258812)"/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 L 48.0 0.0 L 96.0 48.0 L 48.0 96.0 Z" fill="#ffffff" stroke="#5b9bd5" stroke-width="3" transform="matrix(0.7161235014556487,-0.697973588800394,0.697973588800394,0.7161235014556487,638.5067517412008,243.58213752588114)"/>
   </svg>
   <svg id="dynamic">
     <defs/>

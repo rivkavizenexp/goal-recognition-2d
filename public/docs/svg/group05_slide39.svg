@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="100%" version="1.1" viewBox="0,0,1280.0,720.0" width="100%">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 0.0002099737532808399 0.0 L 0.00010498687664041995 0.00010498687664041995 L 0.0002099737532808399 0.0002099737532808399 L 0.0 0.0002099737532808399 L 0.00010498687664041995 0.00010498687664041995 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(228600.0,0.0,0.0,457200.0,745.3885564304462,555.1201049868766)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 0.0002099737532808399 0.0 L 0.00010498687664041995 0.00010498687664041995 L 0.0002099737532808399 0.0002099737532808399 L 0.0 0.0002099737532808399 L 0.00010498687664041995 0.00010498687664041995 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(228600.0,0.0,0.0,457200.0,745.3885564304462,62.78477690288714)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 0.0002099737532808399 0.0 L 0.00010498687664041995 0.00010498687664041995 L 0.0002099737532808399 0.0002099737532808399 L 0.0 0.0002099737532808399 L 0.00010498687664041995 0.00010498687664041995 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(228600.0,0.0,0.0,457200.0,63.709606299212595,330.69889763779526)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 12.8 -57.599999999999994 L 65.8285564304462 -28.342887139107603 L 71.31433070866142 -83.19999999999999 L 133.48566929133858 -53.02855643044619 L 141.7143307086614 -110.6285564304462 L 197.48566929133858 -75.88566929133857 L 204.8 -141.71422572178477"/>
+    </path>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+  </svg>
+</svg>

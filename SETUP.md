@@ -9,6 +9,10 @@ the needed libraries described in [requirements.txt](requirements.txt)
 pip install -r requirements.txt
 ```
 
+## Generate SVG slides
+```[bash]
+./main.py update -i <slides dir> -o public/docs/svg
+```
 ## Firebase
 Install the firebase CLI for deploying updated SVG files by following
  [this guide](https://firebase.google.com/docs/cli#instalnpm l_the_firebase_cli)
@@ -87,7 +91,7 @@ countries=<country_code>,...
 
 make sure you create color blindness qualification test and stored its id in the file:
 ```[bash]
-python3 main.py mturk [-p] create_test
+./main.py mturk [-p] create_test
 ```
 specify -p to create the test on production enviorment
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="100%" version="1.1" viewBox="0,0,1280.0,720.0" width="100%">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#afabab" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,226.42425196850394,183.6903937007874)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 0.0 L 251.15149606299212 0.0 L 251.15149606299212 96.0 L 0.0 96.0 Z" fill="#ffc000" stroke="#ffc000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,822.4242519685039,183.6903937007874)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 19.393963254593174 L 34.07028871391076 0.0 L 68.14057742782153 19.393963254593174 L 34.07028871391076 38.78792650918635 Z" fill="#ffffff" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,369.41207349081367,212.2963779527559)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 19.393963254593174 L 34.07028871391076 0.0 L 68.14057742782153 19.393963254593174 L 34.07028871391076 38.78792650918635 Z" fill="#ffffff" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,261.24850393700785,212.2963779527559)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 19.393963254593174 L 34.07028871391076 0.0 L 68.14057742782153 19.393963254593174 L 34.07028871391076 38.78792650918635 Z" fill="#ffffff" stroke="#ffc000" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,913.9296587926509,212.2963779527559)"/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 19.393963254593174 L 34.07028871391076 0.0 L 68.14057742782153 19.393963254593174 L 34.07028871391076 38.78792650918635 Z" fill="#afabab" stroke="#afabab" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,605.9296587926509,538.7563254593176)"/>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+  </svg>
+</svg>

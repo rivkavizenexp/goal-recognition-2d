@@ -222,10 +222,13 @@ class SvgMaker(object):
                 self.svg_from_shapes(shape.shapes, svg_group)
 
             elif shape.shape_type == MSO_SHAPE_TYPE.TEXT_BOX:
-                print(shape.text)
                 if shape.text.lower().strip() =='disable':
+                    print(svg_parent.filename,"disabled")
                     return False
-                svg_parent.filename=os.path.join(self.output_dir, f'{shape.text}.svg')
+                else:
+                    new_name = os.path.join(self.output_dir, f'{shape.text}.svg')
+                    print(svg_parent.filename,"renamed to",new_name)
+                    svg_parent.filename = new_name
                 # return False
                 # or recognise name of '#layer-id' and get layer name...
             else:
@@ -372,7 +375,6 @@ class SvgExtract(object):
                              self._slide_size, self._output_dir,self._group)
 
     def slides_to_svg(self):
-
         for n in range(1, len(self._slides)+1):
             self.slide_to_svg(n)
 

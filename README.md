@@ -25,7 +25,19 @@ if -c not specified, the program will create the minimum required number of hits
 
 ### to review Assignments use the command:
 ```[bash]
- python3 main.py [-p] mturk review [--auto]
+ python3 main.py mturk [-p] review [--auto]
 ```
 if the auto flag specified, the program will automatically accept or reject assignments, otherwise the program will ask the user what to do 
 
+### to create a csv file with the results use the command:
+```[bash]
+ python3 main.py report [--output_path OUTPUT_PATH] [--anchors_file ANCHORS_FILE] [--preview]
+```
+it will create a csv file with the results of the experiment, 
+- if the preview flag specified, the program will create a preview for each slide
+- you can provide a path to the anchors file, the file should be excel file with the following columns: 
+
+    | Group| Slide| x| y| Radius 
+    | --- | --- | --- | --- | ---
+    | ... | ... | ... | ... | ...
+- if the output_path not specified, the program will create a file in the current directory with the name: results.csv
