@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="100%" version="1.1" viewBox="0,0,1280.0,720.0" width="100%">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,992.181312335958,611.0374803149606)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 24.0 L 24.0 24.0 L 24.0 0.0 L 72.0 0.0 L 72.0 24.0 L 96.0 24.0 L 96.0 72.0 L 72.0 72.0 L 72.0 96.0 L 24.0 96.0 L 24.0 72.0 L 0.0 72.0 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,992.181312335958,289.1034120734908)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 0.0 48.0 A 48.0 48.0 0 0 1 47.99999999999999 -6.111040515849597e-15 A 48.0 48.0 0 0 1 96.0 47.99999999999998 A 48.0 48.0 0 0 1 48.0 95.99999999999997 A 48.0 48.0 0 0 1 0.0 47.99999999999998 Z" fill="#5b9bd5" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,95.81868766404199,586.3518110236221)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M 0.0 0.0 L 51.2 29.25711286089239 L 60.342782152230974 -24.685669291338584 L 102.4 4.571443569553807 L 107.88566929133859 -44.8 L 150.85711286089239 -14.628556430446196 L 155.4285564304462 -64.0 L 200.2285564304462 -38.4 L 205.71422572178477 -91.42855643044619 L 270.62855643044617 -65.82855643044618"/>
+    </path>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+  </svg>
+</svg>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="100%" version="1.1" viewBox="0,0,1280.0,720.0" width="100%">
+  <defs>
+    <style type="text/css"><![CDATA[.non-scaling-stroke { vector-effect: non-scaling-stroke; }]]></style>
+  </defs>
+  <svg id="static_1">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,766.9649343832021,296.6309711286089)"/>
+  </svg>
+  <svg id="static_2">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,762.5511811023622,176.76188976377952)"/>
+  </svg>
+  <svg id="static_3">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,196.48272965879266,290.341312335958)"/>
+  </svg>
+  <svg id="static_4">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,196.48272965879266,176.76188976377952)"/>
+  </svg>
+  <svg id="static_5">
+    <defs/>
+  </svg>
+  <svg id="dynamic">
+    <defs/>
+    <path class="non-scaling-stroke" d="M 48.0 24.0 C 68.0 -32.0 146.0 24.0 48.0 96.0 C -50.0 24.0 28.0 -32.0 48.0 24.0 Z" fill="#000000" stroke="#41719c" stroke-width="3" transform="matrix(1.0,0.0,0.0,1.0,868.4506036745407,557.2729658792651)">
+      <animateMotion dur="5s" fill="freeze" id="entrance_motion" path="M -0.0 -0.0 L -230.27926509186352 -69.02561679790026"/>
+    </path>
+    <animate attributeName="opacity" dur="1s" repeatCount="5" values="1;0;1"/>
+  </svg>
+</svg>

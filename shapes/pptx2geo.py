@@ -1,3 +1,4 @@
+#! /usr/bin/python
 #===============================================================================
 #
 #  Flatmap viewer and annotation tools
@@ -20,6 +21,7 @@
 
 from math import sqrt, sin, cos, pi as PI
 import os
+import sys
 
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
@@ -32,6 +34,7 @@ import svgwrite
 import numpy as np
 
 #===============================================================================
+sys.path.append(os.getcwd())
 
 from drawml.formula import Geometry, radians
 
@@ -137,15 +140,23 @@ class Mpath(svgwrite.base.BaseElement, svgwrite.mixins.XLink):
 
 
 class SvgMaker(object):
-    def __init__(self, slide, slide_number, slide_size, output_dir):
+    def __init__(self, slide, slide_number, slide_size, output_dir,group=0):
 
         self.enter_motion = None
         self.dynamic_path = None
         self.dynamic_svg = None
         self.slide_number = slide_number
-        self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, 'slide{}.svg'.format(slide_number)),
-                                     size=svg_coords(slide_size[0], slide_size[1]))
+        self.output_dir=output_dir
+        self.group=group
+        self._dwg = svgwrite.Drawing(filename=os.path.join(output_dir, f'group{group:02d}_slide{slide_number:02d}.svg'),)
+                                     #size=svg_coords(slide_size[0], slide_size[1]))
         self._dwg.defs.add(self._dwg.style('.non-scaling-stroke { vector-effect: non-scaling-stroke; }'))
+        width,height = svg_coords(slide_size[0], slide_size[1])
+        self._dwg.viewbox(0,0,width, height)
+        # self._dwg.defs['viewbox'] = f"0 0 {width} {height}"
+        # self._dwg.defs.add(self._dwg.viewbox(0,0,width, height))
+
+        # self._dwg.viewbox(0,0,*svg_coords(slide_size[0], slide_size[1]))
         if self.svg_from_shapes(slide.shapes, self._dwg):
             self._dwg.save(pretty=True)
 
@@ -157,16 +168,32 @@ class SvgMaker(object):
         blink_animate = self._dwg.animate(attributeName='opacity',
                                           values="1;0;1")
         blink_animate.set_timing(dur='1s',
-                                 repeatCount='3')
+                                 repeatCount='5')
         return blink_animate
 
     def create_motion_animation(self, svg_path, shape_id):
         # Initial motion animation of dynamic shape
         mpath = Mpath(href='#'+shape_id)
+
+        
+        path = svg_path.commands[1:] #get path as list 
+        matrix=svg_path.attribs['transform'][7:-1].split(',') #get transform matrix
+        offset=(path[1],path[2]) # startpoint coordinates
+        rotation=(float(matrix[0]),float(matrix[3])) # matrix x, y fields
+        
+        path_coordanits=[val for val in path if type(val)==float]
+        path_format=' '.join([s if type(s)==str else '{}' for s in path])
+        path_str = path_format.format(*[(val-offset[idx%2])*rotation[idx%2] for idx,val in enumerate(path_coordanits)])
+        
         entrance_motion = self._dwg.animateMotion()
-        entrance_motion.add(mpath)
+        # entrance_motion.add(mpath)
+        
+        entrance_motion.set_value(path_str)
+        entrance_motion.attribs['fill'] ='freeze'
+        entrance_motion.attribs['id'] = "entrance_motion"
         entrance_motion.set_timing(dur='5s')
-        entrance_motion.set_value(rotate='auto')
+
+        # entrance_motion.set_value(rotate='auto')
         self.enter_motion = entrance_motion
 
     def svg_from_shapes(self, shapes, svg_parent):
@@ -195,8 +222,15 @@ class SvgMaker(object):
                 self.svg_from_shapes(shape.shapes, svg_group)
 
             elif shape.shape_type == MSO_SHAPE_TYPE.TEXT_BOX:
-                pass  # or recognise name of '#layer-id' and get layer name...
-
+                if shape.text.lower().strip() =='disable':
+                    print(svg_parent.filename,"disabled")
+                    return False
+                else:
+                    new_name = os.path.join(self.output_dir, f'{shape.text}.svg')
+                    print(svg_parent.filename,"renamed to",new_name)
+                    svg_parent.filename = new_name
+                # return False
+                # or recognise name of '#layer-id' and get layer name...
             else:
                 print('"{}" {} not processed...'.format(shape.name, str(shape.shape_type)))
 
@@ -209,8 +243,13 @@ class SvgMaker(object):
         return True
 
     def get_shape_color(self, shape):
-        shape_color = 0
-        # shape.fill.solid()
+        shape_color = '#000000'
+
+        #if shape is connector, return white default color
+        if type(shape) is pptx.shapes.connector.Connector:
+            return shape_color
+
+        shape.fill.solid()
         if shape.fill.fore_color.type == 2:
             # SCHEME type
             shape_color = shape.fill.fore_color.theme_color
@@ -304,13 +343,14 @@ class SvgMaker(object):
                 self.dynamic_path = svg_path
                 self.dynamic_svg = svg_parent
 
-            # Add initial motion animation if arrow is in slide (Not done yet)
-            # elif shape.shape_type == MSO_SHAPE_TYPE.FREEFORM:
-            #     freeform_id = svg_parent.get_id()
-            #     svg_path.attribs['id'] = freeform_id
-            #     self.create_motion_animation(svg_path, freeform_id)
+            # Add initial motion animation if arrow is in slide (Not done yet) TODO
+            elif shape.shape_type == MSO_SHAPE_TYPE.FREEFORM or type(shape) is pptx.shapes.connector.Connector:
+                freeform_id = svg_parent.get_id()
+                svg_path.attribs['id'] = freeform_id
+                self.create_motion_animation(svg_path, freeform_id)
                 # self.dynamic_svg.add(svg_path)
-                # continue
+                self.dynamic_path.add(self.enter_motion)
+                continue
 
             svg_parent.add(svg_path)
 
@@ -327,40 +367,59 @@ class SvgExtract(object):
         self._slides = self._ppt.slides
         self._slide_size = [self._ppt.slide_width, self._ppt.slide_height]
 
+        self._group = [int(s) for s in powerpoint.split() if s.isdigit()][0]
+
+
     def slide_to_svg(self, slide_number):
         svg_maker = SvgMaker(self._slides[slide_number-1], slide_number,
-                             self._slide_size, self._output_dir)
+                             self._slide_size, self._output_dir,self._group)
 
     def slides_to_svg(self):
         for n in range(1, len(self._slides)+1):
             self.slide_to_svg(n)
 
+    
 #===============================================================================
 #
-# if __name__ == '__main__':
-#     import argparse
-#
-#     parser = argparse.ArgumentParser(description='Extract geometries from Powerpoint slides.')
-#     parser.add_argument('--version', action='version', version='0.2.1')
-#     parser.add_argument('--debug-xml', action='store_true',
-#                         help="save a slide's DrawML for debugging")
-#     parser.add_argument('--slide', type=int, metavar='N',
-#                         help='only process this slide number (1-origin)')
-#     parser.add_argument('output_dir', metavar='OUTPUT_DIRECTORY',
-#                         help='directory in which to save geometries')
-#     parser.add_argument('powerpoint', metavar='POWERPOINT_FILE',
-#                         help='the name of a Powerpoint file')
-#
-#
-#     args = parser.parse_args()
-#
-#     if not os.path.exists(args.output_dir):
-#         os.makedirs(args.output_dir)
-#
-#     svg_extract = SvgExtract(args)
-#     if args.slide is None:
-#         svg_extract.slides_to_svg()
-#     else:
-#         svg_extract.slide_to_svg(args.slide)
+
+def all_slides_to_svg(input_dir,output_dir):
+    files_list = sorted([os.path.join(input_dir,file) for file in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir,file)) and file.endswith('.pptx')])
+    for file in files_list:
+        svg_extract = SvgExtract(file,output_dir)
+        svg_extract.slides_to_svg()
+
+
+
+if __name__ == '__main__':
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Extract geometries from Powerpoint slides.')
+
+    
+    parser.add_argument('--version', action='version', version='0.2.1')
+    parser.add_argument('--debug-xml', action='store_true',
+                        help="save a slide's DrawML for debugging")
+    parser.add_argument('--slide', type=int, metavar='N',
+                        help='only process this slide number (1-origin)')
+    parser.add_argument('output_dir', metavar='OUTPUT_DIRECTORY',
+                        help='directory in which to save geometries')
+    # parser.add_argument('powerpoint', metavar='POWERPOINT_FILE',
+    #                     help='the name of a Powerpoint file')
+    parser.add_argument('input_dir', metavar='INPUT_DIRECTORY',
+                        help='directory from which to get geometries')
+
+
+    args = parser.parse_args()
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
+
+    all_slides_to_svg(args.input_dir,args.output_dir)
+
+
+    # svg_extract = SvgExtract(args.powerpoint,args.output_dir)
+    # if args.slide is None:
+    #     svg_extract.slides_to_svg()
+    # else:
+    #     svg_extract.slide_to_svg(args.slide)
 
 #===============================================================================
